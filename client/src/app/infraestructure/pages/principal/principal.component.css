@@ -24,7 +24,7 @@
    
     font-size: 1rem;
     font-weight: 600;
-    color: #806a25;
+    color: gray;
     /* color: #6E7A89; */
 }
 
@@ -33,12 +33,10 @@
 }
 
 .menu-listado-reportes .lista .item .name {
-    display: inline-block;
     padding: 0 0 0 8px;
     font-size: 1rem;
     font-weight: 500;
- 
-     color: #434343; 
+    color: #434343d8;
 }
 
 /* titulo reporte */
@@ -49,10 +47,8 @@
 
 .icon-custom {
     
-    color:rgba(49, 49, 49, 0.452);/* Establece el color del texto en blanco */
-    cursor: pointer; /* Cambiar el cursor a una manito cuando el ratón está sobre el icono */
+    color:rgba(86, 94, 95, 0.452);/* Establece el color del texto en blanco */
     font-weight: bold; 
-    font-size: 50px;
     
 }
 

@@ -67,8 +67,8 @@ class BusquedaController {
                     const base = basesDeDatos[i];
                     const pool = database_1.pools[base];
                     const consulta = `
-                    SELECT *
-                    FROM t_archivo
+                    SELECT * , current_database() AS base_de_datos
+                    FROM t_archivo 
                     WHERE ltrim(substring(nro_expediente from 1 for 5), '0') = $1
                     AND substring(nro_expediente from 7 for 4) = $2;
                 `;

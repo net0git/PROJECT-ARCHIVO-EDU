@@ -143,9 +143,6 @@ class UsuarioController {
             res.json({
                 success: true,
                 id_usuario: usuarioRest.id_usuario,
-                usuario: usuarioRest.usuario,
-                nombre: usuarioRest.nombre,
-                perfil: usuarioRest.perfil,
             });
     
         } catch (error) {

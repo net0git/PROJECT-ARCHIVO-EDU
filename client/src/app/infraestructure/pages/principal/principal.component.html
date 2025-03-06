@@ -1,50 +1,70 @@
 <app-navbar></app-navbar>
+<app-subnavabar></app-subnavabar>
 <div class="contenedor">
 
     <div class="row">
         <div class="col-lg-3">
             <div class="menu-listado-reportes">
-                <div class="titulo">DATOS: </div>
+                <div class="titulo">FILTROS</div>
                 <div class="lista">
                     <div class="item">
-                        <div class="name" ><i class="bi  bi-car-front  mx-2"></i> Placa: <span class="text-gold"></span></div>
+                        <div class="name">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="search" id="flexRadioDefault1"
+                                    [(ngModel)]="selectedValue" (change)="onSelectionChange('codigo')" value="codigo">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Búsqueda por código
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="lista">
                     <div class="item">
-                        <div class="name" > <i class="bi bi-card-text mx-2"></i> Marca: <span class="text-gold"></span></div>
+                        <div class="name">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="search" id="flexRadioDefault2"
+                                    [(ngModel)]="selectedValue" (change)="onSelectionChange('numeroAnio')"
+                                    value="numeroAnio">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Búsqueda por número y año
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="lista">
-                    <div class="item">
-                        <div class="name" ><i class="bi bi-card-text mx-2"></i> Modelo: <span class="text-gold"></span></div>
-                    </div>
-                </div>
-                <div class="lista ">
-                    <div class="item">
-                        <div class="name" > <i class="bi  bi-calendar-check mx-2"></i> Año: <span class="text-gold"></span></div>
-                    </div>
-                </div>
+
+                <br>
+                <div class="titulo">EJEMPLOS DE BUSQUEDAS</div>
+
+                <p>Opción seleccionada: {{ selectedValue }}</p>
+
+
             </div>
+
+
+
         </div>
         <div class="col-lg-9">
             <div class="encabezado_pages d-flex justify-content-start">
-                <i class="bi bi-search icon-custom-encabezado" style="font-size: 3rem;"></i>
+                <i class="bi bi-search icon-custom" style="font-size: 3rem;"></i>
                 <!-- <p class="titulo_menu"> Busqueda</p> -->
-                <div class="text-start">
+                <div class="text-start mx-4">
                     <p class="titulo_menu mb-0">Búsqueda</p>
-                    <p  style="font-size: 1.1rem">Encuentre contenido de Historial vehicular usando la placa del vehiculo</p>
+                    <p style="font-size: 1.1rem ">Encuentre contenido y ubicación de los expedientes </p>
                 </div>
             </div>
 
-            
-            <div>
+
+            <div *ngIf="selectedValue=='codigo'">
                 <form class="row mx-auto">
                     <div class="col-auto">
-                        <input type="text" class="form-control mr-2" name="buscar" placeholder="BUSCAR POR PLACA" id="placa_vehicular">
+                        <input type="text" class="form-control mr-2" name="buscar" placeholder="BUSCAR POR PLACA"
+                            id="placa_vehicular">
                     </div>
                     <div class="col-auto">
-                        <button type="button" class="btn btn-primary" >Buscar</button>
+                        <button type="button" class="btn btn-primary">Buscar</button>
                     </div>
                 </form>
             </div>
@@ -69,7 +89,7 @@
                                 <th scope="col">EMPRESA</th>
                             </tr>
                         </thead>
-    
+
                         <!-- <tbody>
                             <tr *ngFor="let item of dataHistorialVehicular, index as i">
     
@@ -84,8 +104,7 @@
                     </table>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>
-
