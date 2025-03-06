@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = require("../database/database"); // Traemos los pools de conexión
 class BusquedaController {
-    buscarExpediente(req, res) {
+    buscarExpedienteCodigo(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { codigoExpediente } = req.params; // Obtenemos el código de expediente desde los parámetros de la URL
             if (!codigoExpediente) {
@@ -33,6 +33,47 @@ class BusquedaController {
                 `;
                     // Realizamos la consulta en la base de datos seleccionada
                     const result = yield pool.query(consulta, [codigoExpediente]);
+                    // Si encontramos el expediente, lo almacenamos y terminamos la búsqueda
+                    if (result.rows.length > 0) {
+                        expedienteEncontrado = result.rows[0];
+                        break; // Salimos del bucle al encontrar el expediente
+                    }
+                }
+                // Si no encontramos el expediente en ninguna base de datos, respondemos con un mensaje
+                if (expedienteEncontrado) {
+                    res.json(expedienteEncontrado); // Retornamos el expediente encontrado
+                }
+                else {
+                    res.status(404).json({ error: 'Expediente no encontrado en ninguna base de datos' });
+                }
+            }
+            catch (error) {
+                console.error('Error al buscar expediente:', error);
+                res.status(500).json({ error: 'Error interno del servidor' });
+            }
+        });
+    }
+    buscarPorNumeroYAnio(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { numero, anio } = req.params; // Obtenemos el número y el año desde los parámetros de la URL
+            const basesDeDatos = Object.keys(database_1.pools);
+            let expedienteEncontrado = null;
+            console.log(basesDeDatos);
+            if (!numero || !anio) {
+                return res.status(400).json({ error: 'Faltan los parámetros numero o anio' });
+            }
+            try {
+                for (let i = 1; i < basesDeDatos.length; i++) {
+                    const base = basesDeDatos[i];
+                    const pool = database_1.pools[base];
+                    const consulta = `
+                    SELECT *
+                    FROM t_archivo
+                    WHERE ltrim(substring(nro_expediente from 1 for 5), '0') = $1
+                    AND substring(nro_expediente from 7 for 4) = $2;
+                `;
+                    // Realizamos la consulta en la base de datos seleccionada
+                    const result = yield pool.query(consulta, [numero, anio]);
                     // Si encontramos el expediente, lo almacenamos y terminamos la búsqueda
                     if (result.rows.length > 0) {
                         expedienteEncontrado = result.rows[0];
