@@ -2,7 +2,7 @@
 <app-subnavabar></app-subnavabar>
 <div class="contenedor">
 
-    <div class="row">
+    <div class="row ">
         <div class="col-lg-3">
             <div class="menu-listado-reportes">
                 <div class="titulo">FILTROS</div>
@@ -46,7 +46,7 @@
 
 
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9 ">
             <div class="encabezado_pages d-flex justify-content-start">
                 <i class="bi bi-search icon-custom" style="font-size: 3rem;"></i>
                 <!-- <p class="titulo_menu"> Busqueda</p> -->
@@ -57,17 +57,32 @@
             </div>
 
 
-            <div *ngIf="selectedValue=='codigo'">
+            <div [ngClass]="{'fade': true, 'show': selectedValue == 'codigo'}">
                 <form class="row mx-auto">
                     <div class="col-auto">
-                        <input type="text" class="form-control mr-2" name="buscar" placeholder="BUSCAR POR PLACA"
-                            id="placa_vehicular">
+                        <input type="text" class="form-control mr-2" name="buscar" placeholder="Buscar por código" id="codigo_expediente">
                     </div>
                     <div class="col-auto">
                         <button type="button" class="btn btn-primary">Buscar</button>
                     </div>
                 </form>
             </div>
+            
+            <div [ngClass]="{'fade': true, 'show': selectedValue == 'numeroAnio'}">
+                <form class="row mx-auto">
+                    <div class="col-auto">
+                        <div class="d-flex justify-content-between">
+                            <input type="text" class="form-control mr-2" name="buscar" placeholder="Número" id="numero_expediente" style="margin-right: 20px;">
+                            <input type="text" class="form-control mr-2" name="buscar" placeholder="Año" id="anio_expediente">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-primary">Buscar</button>
+                    </div>
+                </form>
+            </div>
+            
+            
             <div *ngIf="dataHistorialVehicular.length > 0" class="m-4">
                 <div class="table-responsive">
                     <table class="table text-center  table-hover">

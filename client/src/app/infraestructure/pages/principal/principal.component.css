@@ -5,7 +5,7 @@
 }
 
 .contenedor {
-    margin: 1.2% 4%;
+    margin: 2% 5%;
 
 }
 .text-gold{
@@ -70,3 +70,17 @@
     margin: 0px;
     
 }
+
+
+
+/*  */
+.fade {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  }
+  
+  .fade.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
