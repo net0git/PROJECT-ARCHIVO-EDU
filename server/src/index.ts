@@ -3,6 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan'
 
 import usuariosRoutes from './routes/usuarioRoutes';
+import busquedaRoutes from './routes/buscarRoutes';
 
 
 class Server{
@@ -15,7 +16,7 @@ class Server{
         
     }
     config():void{
-        this.app.set('port',process.env.PORT||4000);
+        this.app.set('port',process.env.PORT||3000);
         this.app.use(morgan('dev'));
         this.app.use(cors());
         this.app.use(express.json({ limit: '100mb' }));
@@ -23,6 +24,7 @@ class Server{
     }
     ruotes():void{
         this.app.use('/',usuariosRoutes);
+        this.app.use('/',busquedaRoutes);
     }
     star():void{
         this.app.listen(this.app.get('port'),()=>{

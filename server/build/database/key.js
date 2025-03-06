@@ -10,19 +10,19 @@ exports.default = {
         port: 5432,
         database: 'db_archivo_usuario'
     },
-    database_LimaNorte_Parameters: {
-        user: 'neto',
-        password: '12345',
-        host: 'localhost', //172.16.226.4
-        port: 5432,
-        database: 'db_archivo_lima_norte'
-    },
     database_callao_Parameters: {
         user: 'neto',
         password: '12345',
         host: 'localhost', //172.16.226.4
         port: 5432,
         database: 'db_archivo_callao'
+    },
+    database_LimaNorte_Parameters: {
+        user: 'neto',
+        password: '12345',
+        host: 'localhost', //172.16.226.4
+        port: 5432,
+        database: 'db_archivo_lima_norte'
     },
     database_ventanilla_Parameters: {
         user: 'neto',

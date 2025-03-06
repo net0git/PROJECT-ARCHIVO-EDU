@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
 const usuarioRoutes_1 = __importDefault(require("./routes/usuarioRoutes"));
+const buscarRoutes_1 = __importDefault(require("./routes/buscarRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -14,7 +15,7 @@ class Server {
         this.ruotes();
     }
     config() {
-        this.app.set('port', process.env.PORT || 4000);
+        this.app.set('port', process.env.PORT || 3000);
         this.app.use((0, morgan_1.default)('dev'));
         this.app.use((0, cors_1.default)());
         this.app.use(express_1.default.json({ limit: '100mb' }));
@@ -22,6 +23,7 @@ class Server {
     }
     ruotes() {
         this.app.use('/', usuarioRoutes_1.default);
+        this.app.use('/', buscarRoutes_1.default);
     }
     star() {
         this.app.listen(this.app.get('port'), () => {
