@@ -1,0 +1,18 @@
+<hgroup>
+    <img src="img/logo_completo_pj.png" >
+    <h1>Sistema integrado de Arhico</h1>
+    <h3>Por Eduardo</h3>
+</hgroup>
+<form>
+    <div class="group">
+        <input type="text" [(ngModel)]="credentials.usuario" name="usuario" ><span class="highlight"></span><span class="bar"></span>
+        <label>usuario</label>
+    </div>
+    <div class="group">
+        <input type="password" [(ngModel)]="credentials.password" name="Contraseña"><span class="highlight"></span><span class="bar"></span>
+        <label>Contraseña</label>
+    </div>
+    <button type="button" class="button buttonBlue">Entrar
+        <div class="ripples buttonRipples" (click)="login()"><span class="ripplesCircle"></span></div>
+    </button>
+</form>
