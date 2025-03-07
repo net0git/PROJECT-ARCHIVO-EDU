@@ -93,6 +93,11 @@
     width: 90%;
     border-radius: 20PX;
   }
+  .card_panel:hover{
+
+    background-color: #f8f8f4;
+ 
+  }
 
   .number-folio{
     font-size: 1.7rem;
@@ -112,7 +117,7 @@
     color: #C28E0E;
     border: 1px solid #FAE5B3;
     box-shadow: 1px 1px 3px 0 #D5DDE5;
-    cursor: none;
+    cursor: default;
 }
 
 .text-nro-expediente{
@@ -147,5 +152,11 @@
 .text-content{
     font-size: 1rem;
     font-weight: 500;
+    color: #404b5ac0;
+}
+
+.text-content-ejemplo{
+    font-size: 0.92rem;
+    font-weight: 400;
     color: #404b5ac0;
 }

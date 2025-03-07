@@ -38,15 +38,15 @@
                 <br>
                 <div class="titulo">EJEMPLOS DE BUSQUEDAS</div>
                 <div>
-                    <h6>busqueda por codigo</h6>
-                    <p>el codigo debe ser exactamente de 12 digitos, mostrara los datos relacionados con el expediente</p>
-                    <p>ejemplo: 1200895645</p>
+                    <h6>Busqueda por codigo</h6>
+                    <p class="text-content-ejemplo">el codigo debe ser exactamente de 12 digitos, mostrara los datos relacionados con el expediente</p>
+                    <p class="text-content-ejemplo">ejemplo: 1200895645</p>
                 </div>
                 <br>
                 <div>
-                    <h6>busqueda por numero y año</h6>
-                    <p>el numero de expediente deben ser exactamente 6 digitos excepto los ceros a la izquerda (son omitidos), el valor del año se toma de los cuatro digitos despues del primer guion.</p>
-                    <p>ejemplo: 03631-2014-0-3398-JR-CI-01</p>
+                    <h6>Busqueda por numero y año</h6>
+                    <p class="text-content-ejemplo">el numero de expediente deben ser exactamente 6 digitos excepto los ceros a la izquerda (son omitidos), el valor del año se toma de los cuatro digitos despues del primer guion.</p>
+                    <p class="text-content-ejemplo">ejemplo: 03631-2014-0-3398-JR-CI-01</p>
                 </div>
                 
                 
@@ -63,7 +63,7 @@
                 <!-- <p class="titulo_menu"> Busqueda</p> -->
                 <div class="text-start mx-4">
                     <p class="titulo_menu mb-0">Búsqueda</p>
-                    <p style="font-size: 1.1rem ">Encuentre contenido y ubicación de los expedientes </p>
+                    <p style="font-size: 1.1rem ">Encuentre datos y ubicación de los expedientes </p>
                 </div>
             </div>
 
@@ -111,10 +111,10 @@
                                 <span>P : {{dataExpediente.codg_paquet}}</span>
                             </div>
                         </div> 
-                        <p class="text-content m-0">codigo exp : {{dataExpediente.codg_expediente}}</p>
-                        <p class="text-content m-0">parte demanda : {{dataExpediente.parte_demanda}}</p>
-                        <p class="text-content m-0">parte demandado : {{dataExpediente.parte_demandado}}</p>
-                        <p class="text-content m-0">fecha conclución : {{dataExpediente.fecha_conclu | date:'dd-MM-yyyy'}}</p>
+                        <p class="text-content m-0">Codigo exp : {{dataExpediente.codg_expediente}}</p>
+                        <p class="text-content m-0">Parte demanda : {{dataExpediente.parte_demanda}}</p>
+                        <p class="text-content m-0">Parte demandado : {{dataExpediente.parte_demandado}}</p>
+                        <p class="text-content m-0">Fecha conclución : {{dataExpediente.fecha_conclu | date:'dd-MM-yyyy'}}</p>
                         <samp class="mt-3">
                             <button class="btn btn-warning-backup btn-sm" ><i class="bi bi-database"></i> {{dataExpediente.base_de_datos}}</button>
 
