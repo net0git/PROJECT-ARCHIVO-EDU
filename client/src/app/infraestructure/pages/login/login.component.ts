@@ -1,4 +1,4 @@
-import { Component, HostListener, Renderer2 } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { LoginRequest } from '../../../domain/dto/LoginRequest.dto';
 import { firstValueFrom } from 'rxjs';
 import { LoginService } from '../../services/remoto/login/login.service';
@@ -20,19 +20,16 @@ export class LoginComponent {
   };
 
   constructor(private renderer: Renderer2, private loginService: LoginService, private router: Router) {}
-  
 
-  @HostListener('blur', ['$event'])
-  onInputBlur(event: FocusEvent) {
-    const input = event.target as HTMLInputElement;
-    if (input.value) {
+  checkInput(event: any) {
+    const input = event.target;
+    if (input.value.trim() !== '') {
       this.renderer.addClass(input, 'used');
     } else {
       this.renderer.removeClass(input, 'used');
     }
   }
 
-  @HostListener('click', ['$event'])
   onRippleClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
     if (target.classList.contains('ripples')) {
@@ -52,16 +49,15 @@ export class LoginComponent {
       }
     }
   }
+
   async login() {
     try {
-      // Convertimos el observable en una promesa con firstValueFrom
       const authResponse = await firstValueFrom(this.loginService.login(this.credentials));
       if (authResponse) {
         console.log('Se logueó correctamente: ' + this.loginService.isAuthenticatedUser());
         this.router.navigate(['principal']);
       } else {
         alert('Credenciales incorrectas');
-        console.log('Estamos dentro del else de login');
       }
     } catch (error) {
       console.error(error);
@@ -69,3 +65,4 @@ export class LoginComponent {
     }
   }
 }
+

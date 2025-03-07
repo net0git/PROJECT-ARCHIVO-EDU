@@ -13,8 +13,8 @@ class BusquedaRoutes{
     config():void{
   
        
-         this.router.get('/api/expediente/buscar/:codigoExpediente',busquedaController.buscarExpedienteCodigo)
-         this.router.get('/api/expediente/buscar/:numero/:anio',busquedaController.buscarPorNumeroYAnio)
+         this.router.get('/api/expediente/buscar-codigo/:codigoExpediente',busquedaController.buscarExpedienteCodigo)
+         this.router.get('/api/expediente/buscar-nro-anio/:numero/:anio',busquedaController.buscarPorNumeroYAnio)
         
           
     }
