@@ -17,21 +17,20 @@
 
         <div class="card rounded shadow border-2 ">
             <div class="card-header py-3 d-flex justify-content-between align-items-center ">
-                <button type="button" class="btn btn-success"  title="agregar usuario" >+add</button>
-                <input type="text" class="form-control mx-4 " name="buscar" placeholder="BUSCAR POR USUARIO / PERFIL / ESTADO" (input)="buscarEnObjeto($event)">
+                <button type="button" class="btn btn-success"  title="agregar usuario" (click)="usuarioForm()" >+add</button>
+                <input type="text" class="form-control mx-4" name="buscar" placeholder="BUSCAR POR USUARIO / PERFIL / ESTADO" (input)="buscarEnObjeto($event)">
             </div>
             <div class="card-body px-5 bg-white rounded">
                 <div class="table-responsive">
                     <table class="table text-center  table-hover" id="excel-table">
                         <thead class="text-white table-success">
                             <tr >
-                                <th scope="col">Nro</th>
-                              
+                                <th scope="col">Nro</th> 
                                 <th scope="col">NOMBRE Y APELLIDOS</th>
                                 <th scope="col">USUARIO</th>
- 
                                 <th scope="col">PERFIL</th>
                                 <th scope="col">ESTADO</th>
+                                <th></th>
 
                             </tr>
                         </thead>
@@ -39,16 +38,13 @@
                             <tr class="hand_cursor" title="click para modificar usuario" *ngFor="let usuario of listaUsuarios  | paginate: { itemsPerPage: 10, currentPage: p }; let i = index" [ngStyle]="{ opacity: usuario.estado ? '1' : '0.50' }" >
                                 
                                     <th scope="row">{{ i + (p - 1) * 10 + 1 }}</th>
-                                   
                                     <td>{{usuario.nombre+ ' '+usuario.ap_paterno+' '+usuario.ap_materno}}</td>
                                     <td class="text-secondary "> <strong>{{usuario.usuario}}</strong> </td>
-                                    
                                     <td>{{usuario.perfil}}</td>
-                                    <td [ngStyle]="{ color: usuario.estado? 'grey' : 'green' }"> {{usuario.estado}}</td>
-                                
-                            </tr>
+                                    <td [ngStyle]="{ color: usuario.estado? 'green' : 'grey' }"> {{usuario.estado?  'Activo' : 'Inactivo'}}</td>
+                                    <td><i class="bi bi-pencil-fill m-2"></i> <i class="bi bi-trash3-fill m-2 " ></i> </td>
+                                </tr>
                         </tbody>
-
                     </table>
 
                 </div>

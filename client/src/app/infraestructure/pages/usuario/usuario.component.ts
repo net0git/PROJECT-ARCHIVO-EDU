@@ -70,6 +70,9 @@ export class UsuarioComponent implements OnInit {
     this.listaUsuarios = objetosFiltrados;
   }
   
+  usuarioForm(){
+    this.router.navigate(['/principal/usuario/form']);
+  }
 
   volver() {
     this.router.navigate(['/principal']);

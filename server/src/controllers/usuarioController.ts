@@ -6,14 +6,14 @@ class UsuarioController {
     
     public async CrearUsuario(req: Request, res: Response) {
         try {
-            const { usuario, password, estado, archivo_sede, nombre, ap_paterno, ap_materno, dni } = req.body;
+            const { usuario, password, estado, archivo_sede, nombre, ap_paterno, ap_materno, dni, perfil } = req.body;
             const passwordcifrado = await encriptar(password);
             const consulta = `
                     INSERT INTO public.t_usuario(
-                        usuario, password, estado, archivo_sede, nombre, ap_paterno, ap_materno, dni)
-                        VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
+                        usuario, password, estado, archivo_sede, nombre, ap_paterno, ap_materno, dni, perfil)
+                        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);
                 `;
-            const valores = [usuario, passwordcifrado, estado, archivo_sede, nombre, ap_paterno, ap_materno, dni];
+            const valores = [usuario, passwordcifrado, estado, archivo_sede, nombre, ap_paterno, ap_materno, dni, perfil];
             pools.user.query(consulta, valores, (error) => {
                 if (error) {
                     console.error(`Error al crear usuario ${usuario}:`, error);
@@ -25,16 +25,6 @@ class UsuarioController {
 
         } catch (error) {
             console.error('Error fatal al crear usuario:', error);
-            res.status(500).json({ error: 'Error interno del servidor' });
-        }
-    }
-
-    public async listarUsuarios(req: Request, res: Response): Promise<any> {
-        try {
-            const usuarios = await pools.user.query('select * from t_usuario')
-            res.json(usuarios['rows']);
-        } catch (error) {
-            console.error('Error al obtener usuarios:', error);
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     }

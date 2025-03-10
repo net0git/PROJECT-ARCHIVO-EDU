@@ -21,7 +21,7 @@ export class NavbarComponent {
     ap_paterno: '',
     ap_materno: '',
     dni: '',
-    estado : null, 
+    estado : false, 
     perfil: '',
     archivo_sede: '',
   };

@@ -37,9 +37,9 @@ export class CredencialesService {
       ap_paterno: '',
       ap_materno: '',
       dni: '',
-      estado: null,
+      estado: false,
       perfil: '',
-      archivo_sede: null
+      archivo_sede: ''
     };
   }
 

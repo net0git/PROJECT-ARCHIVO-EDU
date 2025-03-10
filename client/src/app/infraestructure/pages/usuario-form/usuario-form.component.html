@@ -1,0 +1,105 @@
+<div class="panel">
+    <app-navbar></app-navbar>
+
+    <div class="fondo-volver container-fluid">
+        <button class="m-2 mx-4 btn-volver">
+            <i class="bi bi-arrow-left text-white" (click)="volver()"> volver</i>
+        </button>
+    </div>
+
+    <div class="container-fluid">
+        <div class="encabezado_pages">
+            <i class="bi bi-person icon-custom-encabezado"></i>
+            <p class="titulo_menu">{{titulo}}</p>
+        </div>
+        <div style="width: 100%; max-width: 700px; margin: 0 auto; padding: 10px;">
+            <form>
+                <h3 class="subtitulo_usuario">Datos Personales:</h3>
+                <!-- DATOS DEL PERSONALES -->
+                <fieldset>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="documento_id" class="form-label mt-3">Documento de Identidad:</label>
+                                <input type="text" class="form-control" name="dni" [(ngModel)]="dataUsuario.dni">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre" class="form-label mt-2" name="nombre">Nombre(s):</label>
+                        <input type="text" class="form-control" name="nombre" name="nombre" [(ngModel)]="dataUsuario.nombre">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="ap_paterno" class="form-label mt-3">Apellido Paterno:</label>
+                                <input type="text" class="form-control" name="ap_paterno" name="ap_paterno" [(ngModel)]="dataUsuario.ap_paterno">
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="ap_materno" class="form-label mt-3">Apellido Materno:</label>
+                                <input type="text" class="form-control" name="ap_materno" [(ngModel)]="dataUsuario.ap_materno">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h3 class="subtitulo_usuario mt-4">Datos de Usuario:</h3>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-8">
+                                <label for="usuario" class="form-label mt-2">Nombre de Usuario:</label>
+                                <input type="text" class="form-control" name="usuario" [(ngModel)]="dataUsuario.usuario">
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <label for="sede" class="form-label mt-2">Sede:</label>
+                                    <select id="sede" name="sede" class="form-control" [(ngModel)]="dataUsuario.archivo_sede">
+                                        <option value="" disabled selected>SEDE </option>
+                                        <option value="CALLAO">CALLAO</option>
+                                        <option value="VENTANILLA">VENTANILLA</option>
+                                        <option value="LIMA NORTE">LIMA NORTE</option>
+                                    </select>
+                               
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                       
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="perfil" class="form-label mt-3">Perfil:</label>
+                                <select id="perfil" name="perfil" class="form-control" [(ngModel)]="dataUsuario.perfil">
+                                    <option value="" disabled selected>PERFIL DE USUAIRO </option>
+                                    <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                                    <option value="PERSONAL">PERSONAL</option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <label for="estado" class="form-label mt-3">Estado:</label>
+                                <select id="estado" name="estado" class="form-control" [(ngModel)]="dataUsuario.estado">
+                                    <option value="" disabled selected>ESTADO </option>
+                                    <option value="true">ACTIVO</option>
+                                    <option value="false">INACTIVO</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- area de password -->
+                    <div class="form-group">
+                        <label for="password" class="form-label mt-3">Password:</label>
+                        <input type="password" class="form-control" name="password" placeholder="***************" [(ngModel)]="dataUsuario.password">
+                    </div>
+                </fieldset>
+            </form>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-lg btn-success mt-4" type="button" (click)="crearUsuario()">{{boton_text}}</button>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

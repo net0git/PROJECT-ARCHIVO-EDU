@@ -7,6 +7,6 @@ export interface UsuarioLoginResponse {
     ap_paterno: string;
     ap_materno: string;
     dni: string;
-    estado: boolean|null;
+    estado: boolean;
     archivo_sede: string;
 }

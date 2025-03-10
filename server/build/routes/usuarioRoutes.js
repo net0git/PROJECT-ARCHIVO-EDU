@@ -11,7 +11,6 @@ class UsuariosRoutes {
         this.config();
     }
     config() {
-        this.router.get('/api/usuario', usuarioController_1.default.listarUsuarios);
         this.router.get('/api/usuario/lista', usuarioController_1.default.listarUsuariosDetalle);
         this.router.get('/api/usuario/:id_usuario', usuarioController_1.default.ObtenerUsuario);
         this.router.get('/api/usuario/detalle/:nombre_usuario', usuarioController_1.default.ObtenerUsuarioPorNombre);

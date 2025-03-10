@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../../environments/environment';
-import { UsuarioResponse } from '../../../../domain/dto/Usuario.dto';
+import { CrearUsuarioResponse, UsuarioResponse } from '../../../../domain/dto/Usuario.dto';
 import { Observable } from 'rxjs';
+import { UsuarioModel } from '../../../../domain/models/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,13 +27,18 @@ export class UsuarioService {
     return this.http.get<UsuarioResponse[]>(`${this.api_url_usuario}/lista`)
   }
 
-  obtenerUsuario(id_usuario:number){
-    return this.http.get<any>(`${this.api_url_usuario}/${id_usuario}`)
+  obtenerUsuario(id_usuario:number):Observable<UsuarioResponse>{
+    return this.http.get<UsuarioResponse>(`${this.api_url_usuario}/${id_usuario}`)
   }
 
-  // crearUsuario(usuario:UsuarioModel){
-  //   return this.http.post<any>(this.api_url_usuario,usuario)
-  // }
+  crearUsuario(cuerpo_usuario:UsuarioModel):Observable<CrearUsuarioResponse>{
+    cuerpo_usuario.usuario=cuerpo_usuario.usuario.trim().toUpperCase()
+    cuerpo_usuario.nombre=cuerpo_usuario.nombre.trim().toUpperCase()
+    cuerpo_usuario.ap_paterno=cuerpo_usuario.ap_paterno.trim().toUpperCase()
+    cuerpo_usuario.ap_materno=cuerpo_usuario.ap_materno.trim().toUpperCase()
+    cuerpo_usuario.dni=cuerpo_usuario.dni.trim()
+    return this.http.post<CrearUsuarioResponse>(`${this.api_url_usuario}/crear`, cuerpo_usuario);
+  }
 
   // modificarUsuario(usuario:UsuarioModel){
   //   return this.http.put<any>(this.api_url_usuario,usuario)
