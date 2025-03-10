@@ -28,6 +28,9 @@ export class NavbarComponent {
   constructor( private router:Router, private loginService: LoginService, private credencialesService: CredencialesService) {
     this.credenciales=this.credencialesService.credenciales
   }
+
+  
+
   confirmarSalida() {
     Swal.fire({
       title: '¿Desea salir del sistema?',
@@ -46,4 +49,5 @@ export class NavbarComponent {
       }
     });
   }
+
 }

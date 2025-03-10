@@ -56,22 +56,10 @@ class UsuarioController {
             try {
                 const consulta = `
                     SELECT
-                        t_usuario.id_usuario,
-                        t_usuario.nombre_usuario,
-                        t_usuario.rol,
-                        t_usuario.estado,
-                        t_persona.nombres,
-                        t_persona.ap_paterno,
-                        t_persona.ap_materno,
-                        t_persona.tipo_doc,
-                        t_persona.documento,
-                        t_persona.telefono,
-                        t_persona.correo
+                        *
                     FROM
                         t_usuario
-                    INNER JOIN
-                        t_persona ON t_usuario.id_persona = t_persona.id_persona
-                    ORDER BY t_usuario.estado, t_usuario.rol ASC;
+                    ORDER BY t_usuario.estado, t_usuario.perfil ASC;
             `;
                 const usuarios = yield database_1.pools.user.query(consulta);
                 res.json(usuarios['rows']);

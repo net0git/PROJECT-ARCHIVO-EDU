@@ -18,8 +18,8 @@ export class PrincipalComponent {
   selectedValue: string = 'codigo';
 
   codigoExpediente: string='';
-  numeroExpediente: number=0;
-  anioExpediente: number=0;
+  numeroExpediente: string='';
+  anioExpediente: string='';
 
   dataExpediente: ExpedienteResponseList = {
     nro_expediente: '',
@@ -45,6 +45,22 @@ export class PrincipalComponent {
 
   BuscarExpedientePorCodigo() {
     this.busquedaService.BuscarPorCodigo(this.codigoExpediente).subscribe({
+      next: (data:ExpedienteResponseList) => {
+        
+        this.dataExpediente=data;
+        console.log(this.dataExpediente);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {
+        console.log('completado');
+      }
+    })
+  }
+
+  BuscarPorNumeroAnio() {
+    this.busquedaService.BuscarPorNumeroAnio(this.numeroExpediente, this.anioExpediente).subscribe({
       next: (data:ExpedienteResponseList) => {
         
         this.dataExpediente=data;

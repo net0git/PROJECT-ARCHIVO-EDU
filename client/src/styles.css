@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+.panel{
+
+    height: 100vh;
+    /* overflow-y: hidden; */
+    display: flex;
+    flex-direction: column;
+    
+    
+ }
+
+.icon-custom {
+    
+    color:rgba(49, 49, 49, 0.452);/* Establece el color del texto en blanco */
+    cursor: pointer; /* Cambiar el cursor a una manito cuando el ratón está sobre el icono */
+    font-weight: bold; 
+    font-size: 50px;
+    
+}
+
+
+
+.titulo_menu{
+    
+    font-size: 2.1rem;
+    font-weight: 700;
+    /* color: #26547ae0; */
+    color: #1a3a55cb;
+    margin: 0px;
+ 
+}
+
+.subtitulo_menu{
+
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #284761e7;
+    margin: 0px;
+    
+}
+
+.icon-custom-encabezado {
+    
+    font-weight: bold; 
+    font-size: 3.5rem;
+    color: #929FB1;
+    margin-right: 10px;
+
+}
+
+.encabezado_pages{
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    text-align: center; /* Centra el texto del <p> */      
+}

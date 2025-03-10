@@ -67,7 +67,6 @@
                 </div>
             </div>
 
-
             <div [ngClass]="{'fade': true, 'show': selectedValue == 'codigo'}" >
                 <form class="row mx-auto">
                     <div class="col-auto">
@@ -88,7 +87,7 @@
                         </div>
                     </div>
                     <div class="col-auto">
-                        <button type="button" class="btn btn-primary">Buscar</button>
+                        <button type="button" class="btn btn-primary" (click)="BuscarPorNumeroAnio()">Buscar</button>
                     </div>
                 </form>
             </div>

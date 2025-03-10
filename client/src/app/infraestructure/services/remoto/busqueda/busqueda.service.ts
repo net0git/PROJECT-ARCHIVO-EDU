@@ -18,4 +18,9 @@ export class BusquedaService {
   BuscarPorCodigo(codigoExpediente: string): Observable<ExpedienteResponseList> {
     return this.http.get<ExpedienteResponseList>(`${this.url_api_busqueda}/buscar-codigo/${codigoExpediente}`)
   }
+
+  BuscarPorNumeroAnio(numero: string, anio: string): Observable<ExpedienteResponseList> {
+    return this.http.get<ExpedienteResponseList>(`${this.url_api_busqueda}/buscar-nro-anio/${numero}/${anio}`)
+  }
+
 }

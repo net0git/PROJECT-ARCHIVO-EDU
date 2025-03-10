@@ -14,7 +14,7 @@ class UsuariosRoutes{
     config():void{
   
          this.router.get('/api/usuario',usuarioController.listarUsuarios)
-         this.router.get('/api/usuario/detalle',usuarioController.listarUsuariosDetalle)
+         this.router.get('/api/usuario/lista',usuarioController.listarUsuariosDetalle)
          this.router.get('/api/usuario/:id_usuario',usuarioController.ObtenerUsuario)
          this.router.get('/api/usuario/detalle/:nombre_usuario',usuarioController.ObtenerUsuarioPorNombre)
          this.router.post('/api/usuario/crear',usuarioController.CrearUsuario)
