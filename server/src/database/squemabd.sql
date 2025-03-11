@@ -36,9 +36,10 @@ CREATE TABLE t_archivo (
 
 -- agregarmos usuario ADMIN 123456
 
+
 INSERT INTO public.t_usuario(
-	 usuario, password, estado, archivo_sede, nombre, ap_paterno, ap_materno, dni)
-	VALUES ('ADMIN', '$2a$10$kf9.Ik6AMJpssGabR61doekpX9gJDZUTZuQVhTVzTSwlvgP/5dt8a', TRUE , 'CALLAO', 'EDUARDO', 'CARNDAS', 'LOAIZA', '89562341'); 
+	 usuario, password,perfil, estado, archivo_sede, nombre, ap_paterno, ap_materno, dni)
+	VALUES ('ADMIN', '$2a$10$kf9.Ik6AMJpssGabR61doekpX9gJDZUTZuQVhTVzTSwlvgP/5dt8a', 'ADMINISTRADOR', TRUE , 'CALLAO', 'EDUARDO', 'CARNDAS', 'LOAIZA', '89562341'); 
 
 
 
