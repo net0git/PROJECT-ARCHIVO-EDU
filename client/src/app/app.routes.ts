@@ -15,6 +15,7 @@ export const routes: Routes = [
       { path: 'principal', component: PrincipalComponent },
       { path: 'principal/usuario', component: UsuarioComponent },
       { path: 'principal/usuario/form', component: UsuarioFormComponent },
+      { path: 'principal/usuario/form/editar/:id_usuario', component: UsuarioFormComponent },
 ];
 
 @NgModule({

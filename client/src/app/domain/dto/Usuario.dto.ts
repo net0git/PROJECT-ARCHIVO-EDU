@@ -18,3 +18,11 @@ export interface CrearUsuarioResponse {
 export interface EliminarUsuarioResponse{
     text: string
 }
+
+export interface ModificarUsuarioResponse{
+    text: string
+}
+
+export interface modificarPasswordResponse{
+    text: string
+}

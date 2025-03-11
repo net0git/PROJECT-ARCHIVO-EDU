@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../../environments/environment';
-import { CrearUsuarioResponse, EliminarUsuarioResponse, UsuarioResponse } from '../../../../domain/dto/Usuario.dto';
+import { CrearUsuarioResponse, EliminarUsuarioResponse, modificarPasswordResponse, ModificarUsuarioResponse, UsuarioResponse } from '../../../../domain/dto/Usuario.dto';
 import { Observable } from 'rxjs';
 import { UsuarioModel } from '../../../../domain/models/usuario.model';
 
@@ -44,9 +44,11 @@ export class UsuarioService {
     return this.http.delete<EliminarUsuarioResponse>(`${this.api_url_usuario}/eliminar/${id_usuario}`)
   }
 
-  // modificarUsuario(usuario:UsuarioModel){
-  //   return this.http.put<any>(this.api_url_usuario,usuario)
-  // }
+  modificarUsuario(id_usuario:number, cuerpo_usuario:UsuarioModel):Observable<ModificarUsuarioResponse>{
+    return this.http.put<ModificarUsuarioResponse>(`${this.api_url_usuario}/modificar/datos/${id_usuario}`, cuerpo_usuario)
+  }
 
-  // modificarUsuarioDatos(usuario:UsuarioModel){}
+  modificarPassword(id_usuario:number, password:string):Observable<modificarPasswordResponse>{
+    return this.http.put<ModificarUsuarioResponse>(`${this.api_url_usuario}/modificar/password/${id_usuario}`, {password})
+  }
 }

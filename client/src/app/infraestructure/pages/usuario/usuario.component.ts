@@ -6,6 +6,7 @@ import { UsuarioService } from '../../services/remoto/usuario/usuario.service';
 import { EliminarUsuarioResponse, UsuarioResponse } from '../../../domain/dto/Usuario.dto';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuario',
@@ -44,17 +45,40 @@ export class UsuarioComponent implements OnInit {
   }
 
   eliminarUsuario(id_usuario:number){
-    this.usuarioService.eliminarUsuario(id_usuario).subscribe({
-      next:(res:EliminarUsuarioResponse)=>{
-        console.log(res)
-      },
-      error:(err)=>{
-        console.error(err)
-      },
-      complete:()=>{
-        console.log('el usuairo se elimino correctamente')
+
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6", // Cambia el color de fondo
+   
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+
+        this.usuarioService.eliminarUsuario(id_usuario).subscribe({
+          next:(res:EliminarUsuarioResponse)=>{
+            console.log(res)
+          },
+          error:(err)=>{
+            console.error(err)
+          },
+          complete:()=>{
+            console.log('el usuairo se elimino correctamente')
+            this.listarUsuarios();
+          }
+        })
       }
-    })
+    });
+
+    
   }
 
   buscarEnObjeto(event: any) {
@@ -86,6 +110,10 @@ export class UsuarioComponent implements OnInit {
   
   usuarioForm(){
     this.router.navigate(['/principal/usuario/form']);
+  }
+
+  usuarioEdit(id_usuario:number){
+    this.router.navigate(['/principal/usuario/form/editar/'+id_usuario]);
   }
 
   volver() {

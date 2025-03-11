@@ -35,14 +35,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="hand_cursor" title="click para modificar usuario" *ngFor="let usuario of listaUsuarios  | paginate: { itemsPerPage: 10, currentPage: p }; let i = index" [ngStyle]="{ opacity: usuario.estado ? '1' : '0.50' }" >
+                            <tr class="hand_cursor"  *ngFor="let usuario of listaUsuarios  | paginate: { itemsPerPage: 10, currentPage: p }; let i = index" [ngStyle]="{ opacity: usuario.estado ? '1' : '0.50' }" >
                                 
                                     <th scope="row">{{ i + (p - 1) * 10 + 1 }}</th>
                                     <td>{{usuario.nombre+ ' '+usuario.ap_paterno+' '+usuario.ap_materno}}</td>
                                     <td class="text-secondary "> <strong>{{usuario.usuario}}</strong> </td>
                                     <td>{{usuario.perfil}}</td>
                                     <td [ngStyle]="{ color: usuario.estado? 'green' : 'grey' }"> {{usuario.estado?  'Activo' : 'Inactivo'}}</td>
-                                    <td><i class="bi bi-pencil-fill m-2"></i> <i class="bi bi-trash3-fill m-2 " (click)="eliminarUsuario(usuario.id_usuario)" ></i> </td>
+                                    <td><i class="bi bi-pencil-fill m-2" (click)="usuarioEdit(usuario.id_usuario)" title="click para modificar usuario"></i> <i class="bi bi-trash3-fill m-2 " (click)="eliminarUsuario(usuario.id_usuario)" ></i> </td>
                                 </tr>
                         </tbody>
                     </table>

@@ -136,16 +136,16 @@ class UsuarioController {
             }
         });
     }
-    ModificarUsuarioDatos(req, res) {
+    ModificarDatosUsuario(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { id_usuario } = req.params;
-                const { nombre_usuario, rol, estado } = req.body;
+                const { usuario, estado, nombre, ap_paterno, ap_materno, dni, perfil, archivo_sede } = req.body;
                 const consulta = `
                 UPDATE t_usuario 
-                    SET nombre_usuario= $1, rol= $2, estado= $3
-                WHERE id_usuario=$4`;
-                const valores = [nombre_usuario, rol, estado, id_usuario];
+                    SET usuario = $1, estado = $2, nombre = $3, ap_paterno = $4, ap_materno = $5, dni = $6, perfil = $7, archivo_sede = $8
+                WHERE id_usuario=$9`;
+                const valores = [usuario, estado, nombre, ap_paterno, ap_materno, dni, perfil, archivo_sede, id_usuario];
                 database_1.pools.user.query(consulta, valores, (error) => {
                     if (error) {
                         console.error('Error al modificar usuario:', error);

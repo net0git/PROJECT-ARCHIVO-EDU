@@ -18,7 +18,7 @@ class UsuariosRoutes{
          this.router.get('/api/usuario/detalle/:nombre_usuario',usuarioController.ObtenerUsuarioPorNombre)
          this.router.post('/api/usuario/crear',usuarioController.CrearUsuario)
          this.router.post('/api/usuario/login',usuarioController.ValidarLogin)
-         this.router.put('/api/usuario/modificar/datos/:id_usuario',usuarioController.ModificarUsuarioDatos)   
+         this.router.put('/api/usuario/modificar/datos/:id_usuario',usuarioController.ModificarDatosUsuario)   
          this.router.put('/api/usuario/modificar/password/:id_usuario',usuarioController.ModificarUsuarioPassword) 
          this.router.delete('/api/usuario/eliminar/:id_usuario', usuarioController.EliminarUsuario)
           
