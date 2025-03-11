@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { SubnavabarComponent } from '../../components/subnavabar/subnavabar.component';
 import { ExpedienteResponseList } from '../../../domain/dto/Expediente.dto';
@@ -18,8 +18,12 @@ import { SoloNumerosDirective } from '../../directives/solo-numeros.directive';
   styleUrl: './principal.component.css',
  
 })
-export class PrincipalComponent {
+export class PrincipalComponent implements OnInit {
+
+
   selectedValue: string = 'codigo';
+  showCodigo = false;
+  showNumeroAnio = false;
 
   codigoExpediente: string='';
   numeroExpediente: string='';
@@ -42,9 +46,20 @@ export class PrincipalComponent {
   };
 
   constructor(private busquedaService: BusquedaService) { }
+ngOnInit(): void {
+  this.onSelectionChange('codigo');
+}
 
   onSelectionChange(value: string) {
     this.selectedValue = value;
+
+    if (value === 'codigo') {
+      this.showNumeroAnio = false; // Oculta el otro con animación
+      setTimeout(() => this.showCodigo = true, 50); // Retrasa la animación de aparición
+    } else {
+      this.showCodigo = false;
+      setTimeout(() => this.showNumeroAnio = true, 50);
+    }
   }
 
   BuscarExpedientePorCodigo() {
@@ -66,6 +81,7 @@ export class PrincipalComponent {
       },
       error: (error) => {
         console.log(error);
+        this.dataExpediente.nro_expediente='';
       },
       complete: () => {
         console.log('completado');

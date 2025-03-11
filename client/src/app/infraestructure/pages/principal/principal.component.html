@@ -11,7 +11,7 @@
                         <div class="name">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="search" id="flexRadioDefault1"
-                                    [(ngModel)]="selectedValue" (change)="onSelectionChange('codigo')" value="codigo"   >
+                                    [(ngModel)]="selectedValue" (change)="onSelectionChange('codigo')" value="codigo">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Búsqueda por código
                                 </label>
@@ -39,17 +39,20 @@
                 <div class="titulo">EJEMPLOS DE BUSQUEDAS</div>
                 <div>
                     <h6>Busqueda por codigo</h6>
-                    <p class="text-content-ejemplo">el codigo debe ser exactamente de 11 digitos, mostrara los datos relacionados con el expediente</p>
+                    <p class="text-content-ejemplo">el codigo debe ser exactamente de 11 digitos, mostrara los datos
+                        relacionados con el expediente</p>
                     <p class="text-content-ejemplo">ejemplo: 12021003523</p>
                 </div>
                 <br>
                 <div>
                     <h6>Busqueda por numero y año</h6>
-                    <p class="text-content-ejemplo">el numero de expediente deben ser exactamente 6 digitos excepto los ceros a la izquerda (son omitidos), el valor del año se toma de los cuatro digitos despues del primer guion.</p>
+                    <p class="text-content-ejemplo">el numero de expediente deben ser exactamente 6 digitos excepto los
+                        ceros a la izquerda (son omitidos), el valor del año se toma de los cuatro digitos despues del
+                        primer guion.</p>
                     <p class="text-content-ejemplo">ejemplo: 03631-2014-0-3398-JR-CI-01</p>
                 </div>
-                
-                
+
+
 
 
             </div>
@@ -67,35 +70,44 @@
                 </div>
             </div>
 
-            <div [ngClass]="{'fade': true, 'show': selectedValue == 'codigo'}" >
-                <form class="row mx-auto">
+            <div *ngIf="selectedValue === 'codigo'" [ngClass]="{'fade': true, 'show': showCodigo}" class="mt-2">
+                <form class="row mx-auto mb-4">
                     <div class="col-auto">
-                        <input type="text" class="form-control mr-2" name="buscar" placeholder="Buscar por código" id="codigo_expediente" [(ngModel)]="codigoExpediente" appSoloNumeros maxlength="11">
+                        <input type="text" class="form-control mr-2" name="buscar" placeholder="Buscar por código"
+                            id="codigo_expediente" [(ngModel)]="codigoExpediente" appSoloNumeros maxlength="11">
                     </div>
                     <div class="col-auto">
-                        <button type="button" class="btn btn-primary" (click)="BuscarExpedientePorCodigo()">Buscar</button>
+                        <button type="button" class="btn btn-primary buscar-btn"
+                            (click)="BuscarExpedientePorCodigo()">Buscar</button>
                     </div>
                 </form>
             </div>
-            
-            <div [ngClass]="{'fade': true, 'show': selectedValue == 'numeroAnio'}" >
-                <form class="row mx-auto">
+
+            <div *ngIf="selectedValue === 'numeroAnio'" [ngClass]="{'fade': true, 'show': showNumeroAnio}" class="mt-2">
+                <form class="row mx-auto mb-4">
                     <div class="col-auto">
                         <div class="d-flex justify-content-between">
-                            <input type="text" class="form-control mr-2" name="buscar" placeholder="Número" id="numero_expediente" style="margin-right: 20px;" [(ngModel)]="numeroExpediente" appSoloNumeros maxlength="6">
-                            <input type="text" class="form-control mr-2" name="año" placeholder="Año" id="anio_expediente" [(ngModel)]="anioExpediente" appSoloNumeros maxlength="4">
+                            <input type="text" class="form-control" name="buscar" placeholder="Número"
+                                id="numero_expediente" [(ngModel)]="numeroExpediente" appSoloNumeros maxlength="6">
+                            <input type="text" class="form-control mx-4" name="año" placeholder="Año"
+                                id="anio_expediente" [(ngModel)]="anioExpediente" appSoloNumeros maxlength="4">
+                                <div >
+                                    <button type="button" class="btn btn-primary buscar-btn" (click)="BuscarPorNumeroAnio()">Buscar</button>
+                                </div>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <button type="button" class="btn btn-primary" (click)="BuscarPorNumeroAnio()">Buscar</button>
-                    </div>
+                 
                 </form>
             </div>
-            
-            <div *ngIf="dataExpediente.nro_expediente!=''" class="card_panel" >
+
+
+
+            <div *ngIf="dataExpediente.nro_expediente!=''" class="card_panel">
                 <div class="row p-4">
                     <div class="col-lg-10 d-flex flex-column px-4">
-                        <p class="text-nro-expediente m-0"><i class="bi bi-file-earmark-text"></i> {{dataExpediente.nro_expediente}} /  <samp class="text-estado-expediente">{{dataExpediente.estado}}</samp>  </p>
+                        <p class="text-nro-expediente m-0"><i class="bi bi-file-earmark-text"></i>
+                            {{dataExpediente.nro_expediente}} / <samp
+                                class="text-estado-expediente">{{dataExpediente.estado}}</samp> </p>
                         <div class=" d-flex m-0 mb-2">
                             <div class="tag-title m-1">
                                 <span>A : {{dataExpediente.codg_anaquel}}</span>
@@ -109,13 +121,15 @@
                             <div class="tag-title m-1">
                                 <span>P : {{dataExpediente.codg_paquet}}</span>
                             </div>
-                        </div> 
+                        </div>
                         <p class="text-content m-0">Codigo exp : {{dataExpediente.codg_expediente}}</p>
                         <p class="text-content m-0">Parte demanda : {{dataExpediente.parte_demanda}}</p>
                         <p class="text-content m-0">Parte demandado : {{dataExpediente.parte_demandado}}</p>
-                        <p class="text-content m-0">Fecha conclución : {{dataExpediente.fecha_conclu | date:'dd-MM-yyyy'}}</p>
+                        <p class="text-content m-0">Fecha conclución : {{dataExpediente.fecha_conclu |
+                            date:'dd-MM-yyyy'}}</p>
                         <samp class="mt-3">
-                            <button class="btn btn-warning-backup btn-sm" ><i class="bi bi-database"></i> {{dataExpediente.base_de_datos}}</button>
+                            <button class="btn btn-warning-backup btn-sm"><i class="bi bi-database"></i>
+                                {{dataExpediente.base_de_datos}}</button>
 
                         </samp>
                     </div>
@@ -124,23 +138,12 @@
                             <span class="number-folio">{{dataExpediente.nro_folios}}</span>
                             <samp class="text-folio">FOLIOS</samp>
                         </div>
-                        <!-- <div class=" px-4 d-flex flex-column">
-                            <div class="tag-title m-1">
-                                <span>A:{{dataExpediente.codg_anaquel}}</span>
-                            </div>
-                            <div class="tag-title m-1">
-                                <span>F:{{dataExpediente.codg_fila}}</span>
-                            </div>
-                            <div class="tag-title m-1">
-                                <span>C:{{dataExpediente.codg_column}}</span>
-                            </div>
-                            <div class="tag-title m-1">
-                                <span>P:{{dataExpediente.codg_paquet}}</span>
-                            </div>
-                        </div> -->
-                        
-                    </div>                    
+                    </div>
                 </div>
+            </div>
+
+            <div *ngIf="dataExpediente.nro_expediente==''" class="opacity-50 mx-4">
+                <h4>nada encontrado... </h4>
             </div>
         </div>
     </div>

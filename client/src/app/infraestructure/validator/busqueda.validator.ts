@@ -8,7 +8,7 @@ export function busqueda_codigo_vf( codigo: string): ErrorValidacion[] {
       errorValidacion.push({ campo: 'codigo', mensaje: 'Campo requerido' });
     }
 
-    if(codigo.length!=12){
+    if(codigo.length!=11){
         errorValidacion.push({ campo: 'codigo', mensaje: 'El codigo debe tener 11 digitos' });
     }
 

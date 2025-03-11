@@ -160,3 +160,16 @@
     font-weight: 400;
     color: #404b5ac0;
 }
+
+/*  */
+.buscar-btn{
+    background-color: #B9EACE;
+    color: #227243;
+    border: 1px solid #92DFB2;
+    box-shadow: 1px 1px 3px 0 #D5DDE5;
+    font-weight: 600
+}
+.buscar-btn:hover{
+    background-color:  #86d993;
+
+}
