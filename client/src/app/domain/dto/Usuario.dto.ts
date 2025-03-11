@@ -14,3 +14,7 @@ export interface UsuarioResponse {
 export interface CrearUsuarioResponse {
     text: string;
 }
+
+export interface EliminarUsuarioResponse{
+    text: string
+}

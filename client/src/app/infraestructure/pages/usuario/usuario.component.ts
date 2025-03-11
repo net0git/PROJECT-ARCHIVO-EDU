@@ -3,7 +3,7 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { Router } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UsuarioService } from '../../services/remoto/usuario/usuario.service';
-import { UsuarioResponse } from '../../../domain/dto/Usuario.dto';
+import { EliminarUsuarioResponse, UsuarioResponse } from '../../../domain/dto/Usuario.dto';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -39,6 +39,20 @@ export class UsuarioComponent implements OnInit {
       },
       complete: () => {
         console.log('completado');
+      }
+    })
+  }
+
+  eliminarUsuario(id_usuario:number){
+    this.usuarioService.eliminarUsuario(id_usuario).subscribe({
+      next:(res:EliminarUsuarioResponse)=>{
+        console.log(res)
+      },
+      error:(err)=>{
+        console.error(err)
+      },
+      complete:()=>{
+        console.log('el usuairo se elimino correctamente')
       }
     })
   }

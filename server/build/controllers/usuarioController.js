@@ -190,6 +190,30 @@ class UsuarioController {
             }
         });
     }
+    EliminarUsuario(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { id_usuario } = req.params;
+                const consulta = `
+                DELETE FROM public.t_usuario
+                WHERE id_usuario=$1
+                `;
+                database_1.pools.user.query(consulta, [id_usuario], (error) => {
+                    if (error) {
+                        console.error('Error al eliminar usuario:', error);
+                    }
+                    else {
+                        console.log('usuario eliminado correctamente');
+                        res.json({ text: 'Usuario eliminado correctamente' });
+                    }
+                });
+            }
+            catch (error) {
+                console.error('Error fatal al eliminar usuario:', error);
+                res.status(500).json({ error: 'Error interno del servidor' });
+            }
+        });
+    }
 }
 const usuarioController = new UsuarioController();
 exports.default = usuarioController;

@@ -18,6 +18,7 @@ class UsuariosRoutes {
         this.router.post('/api/usuario/login', usuarioController_1.default.ValidarLogin);
         this.router.put('/api/usuario/modificar/datos/:id_usuario', usuarioController_1.default.ModificarUsuarioDatos);
         this.router.put('/api/usuario/modificar/password/:id_usuario', usuarioController_1.default.ModificarUsuarioPassword);
+        this.router.delete('/api/usuario/eliminar/:id_usuario', usuarioController_1.default.EliminarUsuario);
     }
 }
 const usuariosRoutes = new UsuariosRoutes;

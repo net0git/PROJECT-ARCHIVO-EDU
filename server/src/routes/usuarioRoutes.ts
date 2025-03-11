@@ -20,6 +20,7 @@ class UsuariosRoutes{
          this.router.post('/api/usuario/login',usuarioController.ValidarLogin)
          this.router.put('/api/usuario/modificar/datos/:id_usuario',usuarioController.ModificarUsuarioDatos)   
          this.router.put('/api/usuario/modificar/password/:id_usuario',usuarioController.ModificarUsuarioPassword) 
+         this.router.delete('/api/usuario/eliminar/:id_usuario', usuarioController.EliminarUsuario)
           
     }
 }
