@@ -21,23 +21,23 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <label for="documento_id" class="form-label mt-3">Documento de Identidad:</label>
-                                <input type="text" class="form-control" name="dni" [(ngModel)]="dataUsuario.dni">
+                                <input type="text" class="form-control" name="dni" [(ngModel)]="dataUsuario.dni" maxlength="8" appSoloNumeros>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nombre" class="form-label mt-2" name="nombre">Nombre(s):</label>
-                        <input type="text" class="form-control" name="nombre" name="nombre" [(ngModel)]="dataUsuario.nombre">
+                        <input type="text" class="form-control" name="nombre" name="nombre" [(ngModel)]="dataUsuario.nombre" appSoloLetras>
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <label for="ap_paterno" class="form-label mt-3">Apellido Paterno:</label>
-                                <input type="text" class="form-control" name="ap_paterno" name="ap_paterno" [(ngModel)]="dataUsuario.ap_paterno">
+                                <input type="text" class="form-control" name="ap_paterno" name="ap_paterno" [(ngModel)]="dataUsuario.ap_paterno" appSoloLetras>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="ap_materno" class="form-label mt-3">Apellido Materno:</label>
-                                <input type="text" class="form-control" name="ap_materno" [(ngModel)]="dataUsuario.ap_materno">
+                                <input type="text" class="form-control" name="ap_materno" [(ngModel)]="dataUsuario.ap_materno" appSoloLetras>
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-8">
                                 <label for="usuario" class="form-label mt-2">Nombre de Usuario:</label>
-                                <input type="text" class="form-control" name="usuario" [(ngModel)]="dataUsuario.usuario">
+                                <input type="text" class="form-control" name="usuario" [(ngModel)]="dataUsuario.usuario" appSoloLetras>
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label for="sede" class="form-label mt-2">Sede:</label>

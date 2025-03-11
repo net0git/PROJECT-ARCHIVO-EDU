@@ -27,6 +27,7 @@
                             <tr >
                                 <th scope="col">Nro</th> 
                                 <th scope="col">NOMBRE Y APELLIDOS</th>
+                                <th scope="col">DNI</th>
                                 <th scope="col">USUARIO</th>
                                 <th scope="col">PERFIL</th>
                                 <th scope="col">ESTADO</th>
@@ -39,6 +40,7 @@
                                 
                                     <th scope="row">{{ i + (p - 1) * 10 + 1 }}</th>
                                     <td>{{usuario.nombre+ ' '+usuario.ap_paterno+' '+usuario.ap_materno}}</td>
+                                    <td>{{usuario.dni}}</td>
                                     <td class="text-secondary "> <strong>{{usuario.usuario}}</strong> </td>
                                     <td>{{usuario.perfil}}</td>
                                     <td [ngStyle]="{ color: usuario.estado? 'green' : 'grey' }"> {{usuario.estado?  'Activo' : 'Inactivo'}}</td>

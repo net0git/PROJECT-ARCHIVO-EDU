@@ -63,3 +63,7 @@
     letter-spacing: 0.4px;
    
 }
+
+.form-control{
+    text-transform:uppercase;
+}

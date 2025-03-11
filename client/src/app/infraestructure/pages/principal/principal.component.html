@@ -11,7 +11,7 @@
                         <div class="name">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="search" id="flexRadioDefault1"
-                                    [(ngModel)]="selectedValue" (change)="onSelectionChange('codigo')" value="codigo" >
+                                    [(ngModel)]="selectedValue" (change)="onSelectionChange('codigo')" value="codigo"   >
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Búsqueda por código
                                 </label>
@@ -39,8 +39,8 @@
                 <div class="titulo">EJEMPLOS DE BUSQUEDAS</div>
                 <div>
                     <h6>Busqueda por codigo</h6>
-                    <p class="text-content-ejemplo">el codigo debe ser exactamente de 12 digitos, mostrara los datos relacionados con el expediente</p>
-                    <p class="text-content-ejemplo">ejemplo: 1200895645</p>
+                    <p class="text-content-ejemplo">el codigo debe ser exactamente de 11 digitos, mostrara los datos relacionados con el expediente</p>
+                    <p class="text-content-ejemplo">ejemplo: 12021003523</p>
                 </div>
                 <br>
                 <div>
@@ -70,7 +70,7 @@
             <div [ngClass]="{'fade': true, 'show': selectedValue == 'codigo'}" >
                 <form class="row mx-auto">
                     <div class="col-auto">
-                        <input type="text" class="form-control mr-2" name="buscar" placeholder="Buscar por código" id="codigo_expediente" [(ngModel)]="codigoExpediente">
+                        <input type="text" class="form-control mr-2" name="buscar" placeholder="Buscar por código" id="codigo_expediente" [(ngModel)]="codigoExpediente" appSoloNumeros maxlength="11">
                     </div>
                     <div class="col-auto">
                         <button type="button" class="btn btn-primary" (click)="BuscarExpedientePorCodigo()">Buscar</button>
@@ -82,8 +82,8 @@
                 <form class="row mx-auto">
                     <div class="col-auto">
                         <div class="d-flex justify-content-between">
-                            <input type="text" class="form-control mr-2" name="buscar" placeholder="Número" id="numero_expediente" style="margin-right: 20px;" [(ngModel)]="numeroExpediente">
-                            <input type="text" class="form-control mr-2" name="buscar" placeholder="Año" id="anio_expediente" [(ngModel)]="anioExpediente">
+                            <input type="text" class="form-control mr-2" name="buscar" placeholder="Número" id="numero_expediente" style="margin-right: 20px;" [(ngModel)]="numeroExpediente" appSoloNumeros maxlength="6">
+                            <input type="text" class="form-control mr-2" name="año" placeholder="Año" id="anio_expediente" [(ngModel)]="anioExpediente" appSoloNumeros maxlength="4">
                         </div>
                     </div>
                     <div class="col-auto">

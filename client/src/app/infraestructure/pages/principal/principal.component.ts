@@ -5,11 +5,15 @@ import { ExpedienteResponseList } from '../../../domain/dto/Expediente.dto';
 import { BusquedaService } from '../../services/remoto/busqueda/busqueda.service';
 import { FormsModule } from '@angular/forms'; // Importar FormsModule en Standalone
 import { CommonModule } from '@angular/common';
+import { busqueda_codigo_vf } from '../../validator/busqueda.validator';
+import { busqueda_nro_anio_vf } from '../../validator/busqueda.validator';
+import { SoloNumerosDirective } from '../../directives/solo-numeros.directive';
+
 
 
 @Component({
   selector: 'app-principal',
-  imports: [NavbarComponent, SubnavabarComponent, FormsModule, CommonModule],
+  imports: [NavbarComponent, SubnavabarComponent, FormsModule, CommonModule, SoloNumerosDirective],
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.css',
  
@@ -44,6 +48,16 @@ export class PrincipalComponent {
   }
 
   BuscarExpedientePorCodigo() {
+    const erroresValidacion = busqueda_codigo_vf(this.codigoExpediente)
+    if (erroresValidacion.length > 0) {
+      let errorMensaje = '';
+      erroresValidacion.forEach(error => {
+        errorMensaje += `Error en el campo :"${error.campo}": ${error.mensaje} \n`;
+      });
+      alert(errorMensaje);
+      return;
+    }
+
     this.busquedaService.BuscarPorCodigo(this.codigoExpediente).subscribe({
       next: (data:ExpedienteResponseList) => {
         
@@ -60,6 +74,16 @@ export class PrincipalComponent {
   }
 
   BuscarPorNumeroAnio() {
+    const erroresValidacion = busqueda_nro_anio_vf(this.numeroExpediente, this.anioExpediente)
+    if (erroresValidacion.length > 0) {
+      let errorMensaje = '';
+      erroresValidacion.forEach(error => {
+        errorMensaje += `Error en el campo :"${error.campo}": ${error.mensaje} \n`;
+      });
+      alert(errorMensaje);
+      return;
+    }
+
     this.busquedaService.BuscarPorNumeroAnio(this.numeroExpediente, this.anioExpediente).subscribe({
       next: (data:ExpedienteResponseList) => {
         
