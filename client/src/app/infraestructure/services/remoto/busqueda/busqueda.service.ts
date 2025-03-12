@@ -15,12 +15,12 @@ export class BusquedaService {
   constructor(private http: HttpClient) { }
 
 
-  BuscarPorCodigo(codigoExpediente: string): Observable<ExpedienteResponseList> {
-    return this.http.get<ExpedienteResponseList>(`${this.url_api_busqueda}/buscar-codigo/${codigoExpediente}`)
+  BuscarPorCodigo(codigoExpediente: string): Observable<ExpedienteResponseList[]> {
+    return this.http.get<ExpedienteResponseList[]>(`${this.url_api_busqueda}/buscar-codigo/${codigoExpediente}`)
   }
 
-  BuscarPorNumeroAnio(numero: string, anio: string): Observable<ExpedienteResponseList> {
-    return this.http.get<ExpedienteResponseList>(`${this.url_api_busqueda}/buscar-nro-anio/${numero}/${anio}`)
+  BuscarPorNumeroAnio(numero: string, anio: string): Observable<ExpedienteResponseList[]> {
+    return this.http.get<ExpedienteResponseList[]>(`${this.url_api_busqueda}/buscar-nro-anio/${numero}/${anio}`)
   }
 
 }

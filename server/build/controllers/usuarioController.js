@@ -106,7 +106,7 @@ class UsuarioController {
                     return; // Asegúrate de retornar después de cada res.status()
                 }
                 // Verificar si el usuario existe
-                const usuarioQuery = 'SELECT id_usuario, password, usuario , perfil, estado FROM t_usuario WHERE usuario = $1';
+                const usuarioQuery = 'SELECT * FROM t_usuario WHERE usuario = $1';
                 const usuarioResult = yield database_1.pools.user.query(usuarioQuery, [usuario]);
                 if (usuarioResult.rows.length !== 1) {
                     res.status(404).json({ error: 'Usuario no encontrado.' });
@@ -128,6 +128,14 @@ class UsuarioController {
                 res.json({
                     success: true,
                     id_usuario: usuarioRest.id_usuario,
+                    usuario: usuarioRest.usuario,
+                    nombre: usuario.nombre,
+                    perfil: usuario.perfil,
+                    ap_paterno: usuario.ap_paterno,
+                    ap_materno: usuario.ap_materno,
+                    dni: usuario.dni,
+                    estado: usuario.estado,
+                    archivo_sede: usuario.archivo_sede
                 });
             }
             catch (error) {

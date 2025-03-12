@@ -29,21 +29,23 @@ export class PrincipalComponent implements OnInit {
   numeroExpediente: string='';
   anioExpediente: string='';
 
-  dataExpediente: ExpedienteResponseList = {
-    nro_expediente: '',
-    codg_expediente: '',
-    parte_demanda: '',
-    parte_demandado: '',
-    cod_anio_origen: '',
-    nro_folios: '',
-    fecha_conclu: new Date,
-    estado: '',
-    codg_anaquel: '',
-    codg_fila: '',
-    codg_column: '',
-    codg_paquet: '',
-    base_de_datos: ''
-  };
+  // dataExpediente: ExpedienteResponseList[] = {
+  //   nro_expediente: '',
+  //   codg_expediente: '',
+  //   parte_demanda: '',
+  //   parte_demandado: '',
+  //   cod_anio_origen: '',
+  //   nro_folios: '',
+  //   fecha_conclu: new Date,
+  //   estado: '',
+  //   codg_anaquel: '',
+  //   codg_fila: '',
+  //   codg_column: '',
+  //   codg_paquet: '',
+  //   base_de_datos: ''
+  // };
+
+  dataExpediente: ExpedienteResponseList[] = []
 
   constructor(private busquedaService: BusquedaService) { }
 ngOnInit(): void {
@@ -72,16 +74,17 @@ ngOnInit(): void {
       alert(errorMensaje);
       return;
     }
+    
 
     this.busquedaService.BuscarPorCodigo(this.codigoExpediente).subscribe({
-      next: (data:ExpedienteResponseList) => {
+      next: (data:ExpedienteResponseList[]) => {
         
         this.dataExpediente=data;
         console.log(this.dataExpediente);
       },
       error: (error) => {
         console.log(error);
-        this.dataExpediente.nro_expediente='';
+        this.dataExpediente=[];
       },
       complete: () => {
         console.log('completado');
@@ -100,14 +103,18 @@ ngOnInit(): void {
       return;
     }
 
+    this.numeroExpediente = String(this.numeroExpediente).replace(/^0+/, '');
+
     this.busquedaService.BuscarPorNumeroAnio(this.numeroExpediente, this.anioExpediente).subscribe({
-      next: (data:ExpedienteResponseList) => {
+      next: (data:ExpedienteResponseList[]) => {
         
         this.dataExpediente=data;
         console.log(this.dataExpediente);
+        
       },
       error: (error) => {
         console.log(error);
+        this.dataExpediente=[]
       },
       complete: () => {
         console.log('completado');

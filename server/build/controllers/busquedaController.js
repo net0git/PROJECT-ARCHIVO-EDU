@@ -35,7 +35,7 @@ class BusquedaController {
                     const result = yield pool.query(consulta, [codigoExpediente]);
                     // Si encontramos el expediente, lo almacenamos y terminamos la búsqueda
                     if (result.rows.length > 0) {
-                        expedienteEncontrado = result.rows[0];
+                        expedienteEncontrado = result.rows;
                         break; // Salimos del bucle al encontrar el expediente
                     }
                 }
@@ -70,13 +70,14 @@ class BusquedaController {
                     SELECT * , current_database() AS base_de_datos
                     FROM t_archivo 
                     WHERE ltrim(substring(nro_expediente from 1 for 5), '0') = $1
-                    AND substring(nro_expediente from 7 for 4) = $2;
+                    AND substring(nro_expediente from 7 for 4) = $2
+                    ORDER BY nro_expediente ASC;
                 `;
                     // Realizamos la consulta en la base de datos seleccionada
                     const result = yield pool.query(consulta, [numero, anio]);
                     // Si encontramos el expediente, lo almacenamos y terminamos la búsqueda
                     if (result.rows.length > 0) {
-                        expedienteEncontrado = result.rows[0];
+                        expedienteEncontrado = result.rows;
                         break; // Salimos del bucle al encontrar el expediente
                     }
                 }
