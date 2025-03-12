@@ -48,18 +48,18 @@ export class UsuarioComponent implements OnInit {
 
 
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Estas seguro?",
+      text: "Esta acción no es reversible",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6", // Cambia el color de fondo
    
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "si, eliminar!"
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
+          title: "Eliminado!",
+          text: "El usuario ha sido eliminado.",
           icon: "success"
         });
 
@@ -88,7 +88,10 @@ export class UsuarioComponent implements OnInit {
     objetosFiltrados = this.listaUsuariosTemp.filter(
       (objeto: UsuarioResponse) => {  // ✅ Usa `UsuarioResponse` directamente
         const nombre_usuario = objeto.usuario.toLowerCase();
-        const perfil = objeto.perfil ? objeto.perfil.toLowerCase() : ''; // ✅ Evita error con `null`
+        const nombre = objeto.nombre ? objeto.nombre.toLowerCase() : ''; 
+        const ap_paterno = objeto.ap_paterno ? objeto.ap_paterno.toLowerCase() : ''; 
+        const ap_materno = objeto.ap_materno ? objeto.ap_materno.toLowerCase() : ''; 
+        const perfil = objeto.perfil ? objeto.perfil.toLowerCase() : ''; 
         const estado = objeto.estado ? 'activo' : 'inactivo';
   
         // Si textoBusqueda es "activo" o "inactivo", solo buscar por estado
@@ -100,7 +103,10 @@ export class UsuarioComponent implements OnInit {
         return (
           nombre_usuario.includes(textoBusqueda) ||
           perfil.includes(textoBusqueda) || // ✅ Se asegura que `perfil` no sea null
-          estado.includes(textoBusqueda)
+          estado.includes(textoBusqueda) ||
+          nombre.includes(textoBusqueda) ||
+          ap_paterno.includes(textoBusqueda) ||
+          ap_materno.includes(textoBusqueda) 
         );
       }
     );
