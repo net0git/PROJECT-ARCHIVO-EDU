@@ -8,11 +8,12 @@ import { usuario_form_vf } from '../../validator/formUser.validator';
 import { FormsModule } from '@angular/forms';
 import { SoloNumerosDirective } from '../../directives/solo-numeros.directive';
 import { SoloLetrasDirective } from '../../directives/solo-letras.directive';
+import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuario-form',
-  imports: [NavbarComponent, FormsModule, SoloNumerosDirective, SoloLetrasDirective],
+  imports: [NavbarComponent, FormsModule, CommonModule, SoloNumerosDirective, SoloLetrasDirective],
   templateUrl: './usuario-form.component.html',
   styleUrl: './usuario-form.component.css'
 })
