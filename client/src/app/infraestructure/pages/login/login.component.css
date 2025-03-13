@@ -45,7 +45,6 @@ form {
 input {
 	font-size: 18px;
 	padding: 10px 10px 10px 5px;
-	-webkit-appearance: none;
 	display: block;
 	background: #fafafa;
 	color: #636363;
@@ -184,7 +183,6 @@ input:focus ~ .highlight {
   background: transparent;
 }
 
-
 /* Ripples circle */
 
 .ripplesCircle {
@@ -217,10 +215,6 @@ input:focus ~ .highlight {
     opacity: 0;
   }
 }
-
-
-
-
 
 /*  */
 .panel {
