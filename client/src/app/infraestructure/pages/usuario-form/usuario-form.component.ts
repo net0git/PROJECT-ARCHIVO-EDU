@@ -56,16 +56,10 @@ export class UsuarioFormComponent implements OnInit {
       if (this.dataUsuario.password && this.dataUsuario.password.trim() !== "") {
         this.ModificarPasswordUsuario(this.dataUsuario.password);
       }
-
-
     } else {
       this.crearUsuario()
-      
-
     }
   }
-
-
 
   crearUsuario() {
     const erroresValidacion = usuario_form_vf(this.dataUsuario, this.modificar_usuario)
@@ -96,7 +90,7 @@ export class UsuarioFormComponent implements OnInit {
         });
         setTimeout(() => {
           this.router.navigate(['/principal/usuario'])
-        }, 2000); 
+        }, 2000);
       }
     })
   }

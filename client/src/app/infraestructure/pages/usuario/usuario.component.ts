@@ -22,18 +22,17 @@ export class UsuarioComponent implements OnInit {
 
   constructor(private router: Router, private usuarioService: UsuarioService) { }
 
-
   ngOnInit(): void {
     this.listarUsuarios()
   }
 
   listarUsuarios() {
     this.usuarioService.listarUsuarios().subscribe({
-      next: (data:UsuarioResponse[]) => {
-        
-        this.listaUsuarios=data;
-        this.listaUsuariosTemp=data;
-       
+      next: (data: UsuarioResponse[]) => {
+
+        this.listaUsuarios = data;
+        this.listaUsuariosTemp = data;
+
       },
       error: (error) => {
         console.log(error);
@@ -44,16 +43,14 @@ export class UsuarioComponent implements OnInit {
     })
   }
 
-  eliminarUsuario(id_usuario:number){
-
-
+  eliminarUsuario(id_usuario: number) {
     Swal.fire({
       title: "Estas seguro?",
       text: "Esta acción no es reversible",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6", // Cambia el color de fondo
-   
+
       confirmButtonText: "si, eliminar!"
     }).then((result) => {
       if (result.isConfirmed) {
@@ -64,62 +61,60 @@ export class UsuarioComponent implements OnInit {
         });
 
         this.usuarioService.eliminarUsuario(id_usuario).subscribe({
-          next:(res:EliminarUsuarioResponse)=>{
+          next: (res: EliminarUsuarioResponse) => {
             console.log(res)
           },
-          error:(err)=>{
+          error: (err) => {
             console.error(err)
           },
-          complete:()=>{
+          complete: () => {
             console.log('el usuairo se elimino correctamente')
             this.listarUsuarios();
           }
         })
       }
     });
-
-    
   }
 
   buscarEnObjeto(event: any) {
     const textoBusqueda = event.target.value.toLowerCase();
     let objetosFiltrados: any[] = [];
-  
+
     objetosFiltrados = this.listaUsuariosTemp.filter(
       (objeto: UsuarioResponse) => {  // ✅ Usa `UsuarioResponse` directamente
         const nombre_usuario = objeto.usuario.toLowerCase();
-        const nombre = objeto.nombre ? objeto.nombre.toLowerCase() : ''; 
-        const ap_paterno = objeto.ap_paterno ? objeto.ap_paterno.toLowerCase() : ''; 
-        const ap_materno = objeto.ap_materno ? objeto.ap_materno.toLowerCase() : ''; 
-        const perfil = objeto.perfil ? objeto.perfil.toLowerCase() : ''; 
+        const nombre = objeto.nombre ? objeto.nombre.toLowerCase() : '';
+        const ap_paterno = objeto.ap_paterno ? objeto.ap_paterno.toLowerCase() : '';
+        const ap_materno = objeto.ap_materno ? objeto.ap_materno.toLowerCase() : '';
+        const perfil = objeto.perfil ? objeto.perfil.toLowerCase() : '';
         const estado = objeto.estado ? 'activo' : 'inactivo';
-  
+
         // Si textoBusqueda es "activo" o "inactivo", solo buscar por estado
         if (textoBusqueda === 'activo' || textoBusqueda === 'inactivo') {
           return estado === textoBusqueda;
         }
-  
+
         // En otros casos, buscar coincidencias generales
         return (
           nombre_usuario.includes(textoBusqueda) ||
-          perfil.includes(textoBusqueda) || // ✅ Se asegura que `perfil` no sea null
+          perfil.includes(textoBusqueda) ||
           estado.includes(textoBusqueda) ||
           nombre.includes(textoBusqueda) ||
           ap_paterno.includes(textoBusqueda) ||
-          ap_materno.includes(textoBusqueda) 
+          ap_materno.includes(textoBusqueda)
         );
       }
     );
-  
+
     this.listaUsuarios = objetosFiltrados;
   }
-  
-  usuarioForm(){
+
+  usuarioForm() {
     this.router.navigate(['/principal/usuario/form']);
   }
 
-  usuarioEdit(id_usuario:number){
-    this.router.navigate(['/principal/usuario/form/editar/'+id_usuario]);
+  usuarioEdit(id_usuario: number) {
+    this.router.navigate(['/principal/usuario/form/editar/' + id_usuario]);
   }
 
   volver() {

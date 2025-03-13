@@ -19,7 +19,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="lista">
                     <div class="item">
                         <div class="name">
@@ -34,7 +33,6 @@
                         </div>
                     </div>
                 </div>
-
                 <br>
                 <div class="titulo">EJEMPLOS DE BUSQUEDAS</div>
                 <div>
@@ -51,14 +49,7 @@
                         primer guion.</p>
                     <p class="text-content-ejemplo">ejemplo: 03631-2014-0-3398-JR-CI-01</p>
                 </div>
-
-
-
-
             </div>
-
-
-
         </div>
         <div class="col-lg-9 ">
             <div class="encabezado_pages d-flex justify-content-start">
@@ -91,59 +82,57 @@
                                 id="numero_expediente" [(ngModel)]="numeroExpediente" appSoloNumeros maxlength="6">
                             <input type="text" class="form-control mx-4" name="año" placeholder="Año"
                                 id="anio_expediente" [(ngModel)]="anioExpediente" appSoloNumeros maxlength="4">
-                                <div >
-                                    <button type="button" class="btn btn-primary buscar-btn" (click)="BuscarPorNumeroAnio()">Buscar</button>
-                                </div>
+                            <div>
+                                <button type="button" class="btn btn-primary buscar-btn"
+                                    (click)="BuscarPorNumeroAnio()">Buscar</button>
+                            </div>
                         </div>
                     </div>
-                 
+
                 </form>
             </div>
 
+            <div *ngIf="dataExpediente.length>0">
+                <div *ngFor="let item of dataExpediente" class="card_panel">
+                    <div class="row p-4">
+                        <div class="col-lg-10 d-flex flex-column px-4">
+                            <p class="text-nro-expediente m-0"><i class="bi bi-file-earmark-text"></i>
+                                {{item.nro_expediente}} / <samp class="text-estado-expediente">{{item.estado}}</samp>
+                            </p>
+                            <div class=" d-flex m-0 mb-2">
+                                <div class="tag-title m-1">
+                                    <span>A : {{item.codg_anaquel}}</span>
+                                </div>
+                                <div class="tag-title m-1">
+                                    <span>F : {{item.codg_fila}}</span>
+                                </div>
+                                <div class="tag-title m-1">
+                                    <span>C : {{item.codg_column}}</span>
+                                </div>
+                                <div class="tag-title m-1">
+                                    <span>P : {{item.codg_paquet}}</span>
+                                </div>
+                            </div>
+                            <p class="text-content m-0">Codigo exp : {{item.codg_expediente}}</p>
+                            <p class="text-content m-0">Parte demanda : {{item.parte_demanda}}</p>
+                            <p class="text-content m-0">Parte demandado : {{item.parte_demandado}}</p>
+                            <p class="text-content m-0">Fecha conclución : {{item.fecha_conclu |
+                                date:'dd-MM-yyyy'}}</p>
+                            <samp class="mt-3">
+                                <button class="btn btn-warning-backup btn-sm"><i class="bi bi-database"></i>
+                                    {{item.base_de_datos}}</button>
 
-<div *ngIf="dataExpediente.length>0">
-    <div *ngFor="let item of dataExpediente" class="card_panel">
-        <div class="row p-4">
-            <div class="col-lg-10 d-flex flex-column px-4">
-                <p class="text-nro-expediente m-0"><i class="bi bi-file-earmark-text"></i>
-                    {{item.nro_expediente}} / <samp
-                        class="text-estado-expediente">{{item.estado}}</samp> </p>
-                <div class=" d-flex m-0 mb-2">
-                    <div class="tag-title m-1">
-                        <span>A : {{item.codg_anaquel}}</span>
-                    </div>
-                    <div class="tag-title m-1">
-                        <span>F : {{item.codg_fila}}</span>
-                    </div>
-                    <div class="tag-title m-1">
-                        <span>C : {{item.codg_column}}</span>
-                    </div>
-                    <div class="tag-title m-1">
-                        <span>P : {{item.codg_paquet}}</span>
+                            </samp>
+                        </div>
+                        <div class="col-lg-2 ">
+                            <div class="text-center px-4 d-flex flex-column">
+                                <span class="number-folio">{{item.nro_folios}}</span>
+                                <samp class="text-folio">FOLIOS</samp>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p class="text-content m-0">Codigo exp : {{item.codg_expediente}}</p>
-                <p class="text-content m-0">Parte demanda : {{item.parte_demanda}}</p>
-                <p class="text-content m-0">Parte demandado : {{item.parte_demandado}}</p>
-                <p class="text-content m-0">Fecha conclución : {{item.fecha_conclu |
-                    date:'dd-MM-yyyy'}}</p>
-                <samp class="mt-3">
-                    <button class="btn btn-warning-backup btn-sm"><i class="bi bi-database"></i>
-                        {{item.base_de_datos}}</button>
-
-                </samp>
             </div>
-            <div class="col-lg-2 ">
-                <div class="text-center px-4 d-flex flex-column">
-                    <span class="number-folio">{{item.nro_folios}}</span>
-                    <samp class="text-folio">FOLIOS</samp>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-            
-
             <div *ngIf="dataExpediente.length==0" class="opacity-50 mx-4">
                 <h4>nada encontrado... </h4>
             </div>

@@ -21,27 +21,30 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <label for="documento_id" class="form-label mt-3">Documento de Identidad:</label>
-                                <input type="text" class="form-control" name="dni" [(ngModel)]="dataUsuario.dni" maxlength="8" appSoloNumeros>
+                                <input type="text" class="form-control" name="dni" [(ngModel)]="dataUsuario.dni"
+                                    maxlength="8" appSoloNumeros>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nombre" class="form-label mt-2" name="nombre">Nombre(s):</label>
-                        <input type="text" class="form-control" name="nombre" name="nombre" [(ngModel)]="dataUsuario.nombre" appSoloLetras>
+                        <input type="text" class="form-control" name="nombre" name="nombre"
+                            [(ngModel)]="dataUsuario.nombre" appSoloLetras>
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <label for="ap_paterno" class="form-label mt-3">Apellido Paterno:</label>
-                                <input type="text" class="form-control" name="ap_paterno" name="ap_paterno" [(ngModel)]="dataUsuario.ap_paterno" appSoloLetras>
+                                <input type="text" class="form-control" name="ap_paterno" name="ap_paterno"
+                                    [(ngModel)]="dataUsuario.ap_paterno" appSoloLetras>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <label for="ap_materno" class="form-label mt-3">Apellido Materno:</label>
-                                <input type="text" class="form-control" name="ap_materno" [(ngModel)]="dataUsuario.ap_materno" appSoloLetras>
+                                <input type="text" class="form-control" name="ap_materno"
+                                    [(ngModel)]="dataUsuario.ap_materno" appSoloLetras>
                             </div>
                         </div>
                     </div>
-
 
                     <h3 class="subtitulo_usuario mt-4">Datos de Usuario:</h3>
 
@@ -49,24 +52,23 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-8">
                                 <label for="usuario" class="form-label mt-2">Nombre de Usuario:</label>
-                                <input type="text" class="form-control" name="usuario" [(ngModel)]="dataUsuario.usuario" appSoloLetras>
+                                <input type="text" class="form-control" name="usuario" [(ngModel)]="dataUsuario.usuario"
+                                    appSoloLetras>
                             </div>
                             <div class="col-sm-12 col-md-4">
                                 <label for="sede" class="form-label mt-2">Sede:</label>
-                                    <select id="sede" name="sede" class="form-control" [(ngModel)]="dataUsuario.archivo_sede">
-                                        <option value="" disabled selected>SEDE </option>
-                                        <option value="CALLAO">CALLAO</option>
-                                        <option value="VENTANILLA">VENTANILLA</option>
-                                        <option value="LIMA NORTE">LIMA NORTE</option>
-                                    </select>
-                               
+                                <select id="sede" name="sede" class="form-control"
+                                    [(ngModel)]="dataUsuario.archivo_sede">
+                                    <option value="" disabled selected>SEDE </option>
+                                    <option value="CALLAO">CALLAO</option>
+                                    <option value="VENTANILLA">VENTANILLA</option>
+                                    <option value="LIMA NORTE">LIMA NORTE</option>
+                                </select>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="form-group">
-                       
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <label for="perfil" class="form-label mt-3">Perfil:</label>
@@ -76,7 +78,6 @@
                                     <option value="PERSONAL">PERSONAL</option>
                                 </select>
                             </div>
-
                             <div class="col-sm-12 col-md-6">
                                 <label for="estado" class="form-label mt-3">Estado:</label>
                                 <select id="estado" name="estado" class="form-control" [(ngModel)]="dataUsuario.estado">
@@ -88,26 +89,22 @@
                         </div>
 
                     </div>
-                    <!-- area de password -->
                     <div class="form-group">
                         <label for="password" class="form-label mt-3">Password:</label>
-                        <input type="password" class="form-control" name="password" placeholder="***************" [(ngModel)]="dataUsuario.password">
+                        <input type="password" class="form-control" name="password" placeholder="***************"
+                            [(ngModel)]="dataUsuario.password">
                     </div>
                 </fieldset>
             </form>
-            
-           
+
+
             <div class="d-grid gap-2">
                 <div class="d-grid gap-2">
-                    <button 
-                        class="btn btn-lg mt-4"
-                        [ngClass]="modificar_usuario ? 'btn-warning' : 'btn-success'"
-                        type="button" 
-                        (click)="formAction()">
+                    <button class="btn btn-lg mt-4" [ngClass]="modificar_usuario ? 'btn-warning' : 'btn-success'"
+                        type="button" (click)="formAction()">
                         {{ boton_text }}
                     </button>
                 </div>
-                <!-- <button  class="btn btn-lg btn-warning mt-4" type="button" (click)="formAction()">ut</button> -->
                 <br>
             </div>
         </div>

@@ -1,3 +1,3 @@
 export const Util = Object({
-    "v1": "http://localhost:3000/api",//api rest
+    "v1": "http://localhost:3000/api",
 });
