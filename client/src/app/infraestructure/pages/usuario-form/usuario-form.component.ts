@@ -84,7 +84,7 @@ export class UsuarioFormComponent implements OnInit {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Your work has been saved",
+          title: "Usuario creado correctamente",
           showConfirmButton: false,
           timer: 2000
         });
