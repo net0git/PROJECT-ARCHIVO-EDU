@@ -12,11 +12,16 @@ export const routes: Routes = [
         redirectTo: '/login',
         pathMatch: 'full'
       },
+      // { path: 'login', component: LoginComponent },
+      // { path: 'principal', component: PrincipalComponent , canActivate: [authGuard]},
+      // { path: 'principal/usuario', component: UsuarioComponent, canActivate: [authGuard] },
+      // { path: 'principal/usuario/form', component: UsuarioFormComponent, canActivate: [authGuard] },
+      // { path: 'principal/usuario/form/editar/:id_usuario', component: UsuarioFormComponent, canActivate: [authGuard] },
       { path: 'login', component: LoginComponent },
-      { path: 'principal', component: PrincipalComponent , canActivate: [authGuard]},
-      { path: 'principal/usuario', component: UsuarioComponent, canActivate: [authGuard] },
-      { path: 'principal/usuario/form', component: UsuarioFormComponent, canActivate: [authGuard] },
-      { path: 'principal/usuario/form/editar/:id_usuario', component: UsuarioFormComponent, canActivate: [authGuard] },
+      { path: 'principal', component: PrincipalComponent},
+      { path: 'principal/usuario', component: UsuarioComponent },
+      { path: 'principal/usuario/form', component: UsuarioFormComponent },
+      { path: 'principal/usuario/form/editar/:id_usuario', component: UsuarioFormComponent },
 ];
 
 @NgModule({

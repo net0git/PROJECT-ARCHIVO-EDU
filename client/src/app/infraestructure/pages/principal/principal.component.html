@@ -164,7 +164,7 @@
                                     <span class="number-folio">{{item.nro_folios}}</span>
                                     <samp class="text-folio">FOLIOS</samp>
                                 </div>
-                                <i class="bi bi-printer icon-printer" title="imprimir"></i>
+                                <i class="bi bi-printer icon-printer" (click)="openModal(item)" title="imprimir"></i>
                             </div>
                             
                         </div>
@@ -174,6 +174,22 @@
             <div *ngIf="dataExpediente.length==0" class="opacity-50 mx-4">
                 <h4>nada encontrado... </h4>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade modal-xl" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content m-0 p-0 ">
+
+            <div class="modal-body text-start p-0 m-0">
+                <div class="text-center iframe_pdf">
+                    <iframe [src]="pdfUrl" type="application/pdf" width="100%" height="860p"></iframe>
+                </div>
+            </div>
+      
         </div>
     </div>
 </div>
