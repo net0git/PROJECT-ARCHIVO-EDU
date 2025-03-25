@@ -19,7 +19,7 @@ CREATE TABLE t_usuario (
 -- BD VENTANILLA : db_archivo_ventanilla
 
 --  BD LIMA NORTE,  CALLAO, VENTANILLA
-CREATE TABLE t_archivo (
+CREATE TABLE t_expediente (
     nro_expediente VARCHAR(150) NOT NULL,
     codg_expediente BIGINT PRIMARY KEY,  -- Cambié SERIAL por BIGINT
     parte_demanda VARCHAR,
@@ -44,7 +44,7 @@ INSERT INTO public.t_usuario(
 
 
 -- registro de datos en base de datos b1
-INSERT INTO t_archivo (
+INSERT INTO t_expediente (
     nro_expediente,
     codg_expediente,
     parte_demanda,
@@ -97,7 +97,7 @@ INSERT INTO t_archivo (
 
 
 -- registro de datos en bd2
-INSERT INTO t_archivo (
+INSERT INTO t_expediente (
     nro_expediente, 
     codg_expediente, 
     parte_demanda, 
@@ -136,7 +136,7 @@ INSERT INTO t_archivo (
 ('01736-2013-0-3398-JR-CI-01', 012021003412, 'denant_26', 'demando_26', '2013', 894, '2021-08-18 16:22:51', 'archivado', 56, 3, 1, 25);
 
 -- registro de datos en bd3
-INSERT INTO t_archivo (
+INSERT INTO t_expediente (
     nro_expediente, 
     codg_expediente, 
     parte_demanda, 

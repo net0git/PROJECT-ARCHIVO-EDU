@@ -13,6 +13,7 @@ class BusquedaRoutes {
     config() {
         this.router.get('/api/expediente/buscar-codigo/:codigoExpediente', busquedaController_1.default.buscarExpedienteCodigo);
         this.router.get('/api/expediente/buscar-nro-anio/:numero/:anio', busquedaController_1.default.buscarPorNumeroYAnio);
+        this.router.get('/api/expediente/buscar-nombre-parte/:nombre_parte', busquedaController_1.default.buscarNombreParte);
     }
 }
 const busquedaRoutes = new BusquedaRoutes;

@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms'; // Importar FormsModule en Standal
 import { CommonModule } from '@angular/common';
 import { busqueda_codigo_vf } from '../../validator/busqueda.validator';
 import { busqueda_nro_anio_vf } from '../../validator/busqueda.validator';
+import { busqueda_nombre_parte_vf } from '../../validator/busqueda.validator';
 import { SoloNumerosDirective } from '../../directives/solo-numeros.directive';
 
 
@@ -24,10 +25,12 @@ export class PrincipalComponent implements OnInit {
   selectedValue: string = 'codigo';
   showCodigo = false;
   showNumeroAnio = false;
+  showNombreParte = false;
 
   codigoExpediente: string='';
   numeroExpediente: string='';
   anioExpediente: string='';
+  nombreParte: string='';
 
   // dataExpediente: ExpedienteResponseList[] = {
   //   nro_expediente: '',
@@ -56,10 +59,18 @@ ngOnInit(): void {
     this.selectedValue = value;
 
     if (value === 'codigo') {
-      this.showNumeroAnio = false; // Oculta el otro con animación
-      setTimeout(() => this.showCodigo = true, 50); // Retrasa la animación de aparición
-    } else {
+      this.showNumeroAnio = false; 
+      this.showNombreParte = false;
+      setTimeout(() => this.showCodigo = true, 50); 
+    } 
+    if(value === 'numeroAnio') {
       this.showCodigo = false;
+      this.showNombreParte = false;
+      setTimeout(() => this.showNumeroAnio = true, 50);
+    }
+    if(value === 'nombreParte') {
+      this.showCodigo = false;
+      this.showNumeroAnio = false;
       setTimeout(() => this.showNumeroAnio = true, 50);
     }
   }
@@ -120,6 +131,37 @@ ngOnInit(): void {
         console.log('completado');
       }
     })
+  }
+
+  BuscarPorNombreParte() {
+    const erroresValidacion = busqueda_nombre_parte_vf(this.nombreParte)
+    if (erroresValidacion.length > 0) {
+      let errorMensaje = '';
+      erroresValidacion.forEach(error => {
+        errorMensaje += `Error en el campo :"${error.campo}": ${error.mensaje} \n`;
+      });
+      alert(errorMensaje);
+      return;
+    }
+
+    this.nombreParte = this.nombreParte.trim();
+
+    this.busquedaService.BuscarPorNombreParte(this.nombreParte).subscribe({
+      next: (data:ExpedienteResponseList[]) => {
+        
+        this.dataExpediente=data;
+        console.log(this.dataExpediente);
+        
+      },
+      error: (error) => {
+        console.log(error);
+        this.dataExpediente=[]
+      },
+      complete: () => {
+        console.log('completado');
+      }
+    })
+
   }
 
 }

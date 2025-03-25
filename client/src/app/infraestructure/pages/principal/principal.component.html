@@ -33,6 +33,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="lista">
+                    <div class="item">
+                        <div class="name">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="search" id="flexRadioDefault3"
+                                    [(ngModel)]="selectedValue" (change)="onSelectionChange('nombreParte')"
+                                    value="nombreParte">
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                    Búsqueda por nombre de parte
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <br>
                 <div class="titulo">EJEMPLOS DE BUSQUEDAS</div>
                 <div>
@@ -49,12 +63,17 @@
                         primer guion.</p>
                     <p class="text-content-ejemplo">ejemplo: 03631-2014-0-3398-JR-CI-01</p>
                 </div>
+                <br>
+                <div>
+                    <h6>Busqueda por nombre de parte</h6>
+                    <p class="text-content-ejemplo">la búsqueda por nombre de parte nos permite encontrar expedientes relacionados al nombre de parte indicado.</p>
+                    <p class="text-content-ejemplo">ejemplo: denan_36</p>
+                </div>
             </div>
         </div>
         <div class="col-lg-9 ">
             <div class="encabezado_pages d-flex justify-content-start">
                 <i class="bi bi-search icon-custom" style="font-size: 3rem;"></i>
-                <!-- <p class="titulo_menu"> Busqueda</p> -->
                 <div class="text-start mx-4">
                     <p class="titulo_menu mb-0">Búsqueda</p>
                     <p style="font-size: 1.1rem ">Encuentre datos y ubicación de los expedientes </p>
@@ -85,6 +104,21 @@
                             <div>
                                 <button type="button" class="btn btn-primary buscar-btn"
                                     (click)="BuscarPorNumeroAnio()">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div *ngIf="selectedValue === 'nombreParte'" [ngClass]="{'fade': true, 'show': showNumeroAnio}" class="mt-2">
+                <form class="row mx-auto mb-4">
+                    <div class="col-auto">
+                        <div class="d-flex justify-content-between">
+                            <input type="text" class="form-control " name="buscar" placeholder="nombre parte"
+                                id="nombre_parte" [(ngModel)]="nombreParte" >
+                            <div>
+                                <button type="button" class="btn btn-primary buscar-btn mx-4" (click)="BuscarPorNombreParte()">Buscar</button>
                             </div>
                         </div>
                     </div>
@@ -125,10 +159,14 @@
                             </samp>
                         </div>
                         <div class="col-lg-2 ">
-                            <div class="text-center px-4 d-flex flex-column">
-                                <span class="number-folio">{{item.nro_folios}}</span>
-                                <samp class="text-folio">FOLIOS</samp>
+                            <div class="text-center d-flex flex-column justify-content-between h-100">
+                                <div class="text-center px-4 d-flex flex-column">
+                                    <span class="number-folio">{{item.nro_folios}}</span>
+                                    <samp class="text-folio">FOLIOS</samp>
+                                </div>
+                                <i class="bi bi-printer icon-printer" title="imprimir"></i>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

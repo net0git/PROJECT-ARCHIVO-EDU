@@ -23,7 +23,7 @@ class BusquedaController {
           
                 const consulta = `
                     SELECT *, current_database() AS base_de_datos 
-                    FROM t_archivo 
+                    FROM t_expediente 
                     WHERE codg_expediente = $1;
                 `
 
@@ -69,7 +69,7 @@ class BusquedaController {
           
                 const consulta = `
                     SELECT * , current_database() AS base_de_datos
-                    FROM t_archivo 
+                    FROM t_expediente 
                     WHERE ltrim(substring(nro_expediente from 1 for 5), '0') = $1
                     AND substring(nro_expediente from 7 for 4) = $2
                     ORDER BY nro_expediente ASC;
@@ -96,6 +96,50 @@ class BusquedaController {
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     }
+
+    public async buscarNombreParte(req: Request, res: Response): Promise<any> {
+        const { nombre_parte } = req.params; // Obtenemos el nombre desde los parámetros de la URL
+    
+        if (!nombre_parte) {
+            return res.status(400).json({ error: 'Falta el parámetro nombre parte' });
+        }
+    
+        const basesDeDatos = Object.keys(pools); // Lista de bases de datos
+        let expedienteEncontrado = null;
+    
+        try {
+            for (let i = 1; i < basesDeDatos.length; i++) { // Recorremos todas las bases de datos
+                const base = basesDeDatos[i];
+                const pool = pools[base];
+    
+                const consulta = `
+                    SELECT * , current_database() AS base_de_datos
+                    FROM t_expediente
+                    WHERE parte_demanda ILIKE $1 
+                    OR parte_demandado ILIKE $1;
+                `;
+    
+                // Agregamos los '%' en el código, no en la consulta directamente
+                const result = await pool.query(consulta, [`%${nombre_parte}%`]);
+    
+                if (result.rows.length > 0) {
+                    expedienteEncontrado = result.rows;
+                    break; // Salimos del bucle si encontramos resultados
+                }
+            }
+    
+            if (expedienteEncontrado) {
+                res.json(expedienteEncontrado);
+            } else {
+                res.status(404).json({ error: 'Expediente no encontrado en ninguna base de datos' });
+            }
+        } catch (error) {
+            console.error('Error al buscar expediente:', error);
+            res.status(500).json({ error: 'Error interno del servidor' });
+        }
+    }
+    
+
 }
 
 const busquedaController = new BusquedaController();
