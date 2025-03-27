@@ -9,12 +9,13 @@ class BusquedaController {
         if (!codigoExpediente) {
             return res.status(400).json({ error: 'Falta el parámetro codigoExpediente' });
         }
-
+    
         // Listamos todas las bases de datos disponibles en el objeto pools
         const basesDeDatos = Object.keys(pools); 
-        let expedienteEncontrado = null;
-        console.log(basesDeDatos)
-
+        let expedientesEncontrados: any[] = []; // Lista para almacenar los resultados encontrados
+    
+        console.log(basesDeDatos);
+    
         try {
             // Recorremos cada base de datos para buscar el expediente
             for (let i = 1; i < basesDeDatos.length; i++) {  // Comenzamos en el índice 1 (omitiendo el primer elemento)
@@ -26,20 +27,19 @@ class BusquedaController {
                     FROM t_expediente 
                     WHERE codg_expediente = $1;
                 `
-
+    
                 // Realizamos la consulta en la base de datos seleccionada
                 const result = await pool.query(consulta, [codigoExpediente]);
-
-                // Si encontramos el expediente, lo almacenamos y terminamos la búsqueda
+    
+                // Si encontramos expedientes, los añadimos a la lista
                 if (result.rows.length > 0) {
-                    expedienteEncontrado = result.rows;
-                    break; // Salimos del bucle al encontrar el expediente
+                    expedientesEncontrados = expedientesEncontrados.concat(result.rows);
                 }
             }
-
-            // Si no encontramos el expediente en ninguna base de datos, respondemos con un mensaje
-            if (expedienteEncontrado) {
-                res.json(expedienteEncontrado); // Retornamos el expediente encontrado
+    
+            // Si encontramos expedientes en alguna base de datos, los retornamos
+            if (expedientesEncontrados.length > 0) {
+                res.json(expedientesEncontrados);
             } else {
                 res.status(404).json({ error: 'Expediente no encontrado en ninguna base de datos' });
             }
@@ -48,11 +48,12 @@ class BusquedaController {
             res.status(500).json({ error: 'Error interno del servidor' });
         }
     }
+    
 
     public async buscarPorNumeroYAnio(req: Request, res: Response): Promise<any> {
         const { numero, anio } = req.params;  // Obtenemos el número y el año desde los parámetros de la URL
         const basesDeDatos = Object.keys(pools); 
-        let expedienteEncontrado = null;
+        let expedientesEncontrados:any[] = [];
         console.log(basesDeDatos)
 
 
@@ -80,14 +81,13 @@ class BusquedaController {
 
                 // Si encontramos el expediente, lo almacenamos y terminamos la búsqueda
                 if (result.rows.length > 0) {
-                    expedienteEncontrado = result.rows;
-                    break; // Salimos del bucle al encontrar el expediente
+                    expedientesEncontrados = expedientesEncontrados.concat(result.rows);
                 }
             }
 
             // Si no encontramos el expediente en ninguna base de datos, respondemos con un mensaje
-            if (expedienteEncontrado) {
-                res.json(expedienteEncontrado); // Retornamos el expediente encontrado
+            if (expedientesEncontrados) {
+                res.json(expedientesEncontrados); // Retornamos el expediente encontrado
             } else {
                 res.status(404).json({ error: 'Expediente no encontrado en ninguna base de datos' });
             }
@@ -105,7 +105,7 @@ class BusquedaController {
         }
     
         const basesDeDatos = Object.keys(pools); // Lista de bases de datos
-        let expedienteEncontrado = null;
+        let expedientesEncontrados:any[] = [];
     
         try {
             for (let i = 1; i < basesDeDatos.length; i++) { // Recorremos todas las bases de datos
@@ -123,13 +123,12 @@ class BusquedaController {
                 const result = await pool.query(consulta, [`%${nombre_parte}%`]);
     
                 if (result.rows.length > 0) {
-                    expedienteEncontrado = result.rows;
-                    break; // Salimos del bucle si encontramos resultados
+                    expedientesEncontrados = expedientesEncontrados.concat(result.rows);
                 }
             }
     
-            if (expedienteEncontrado) {
-                res.json(expedienteEncontrado);
+            if (expedientesEncontrados) {
+                res.json(expedientesEncontrados);
             } else {
                 res.status(404).json({ error: 'Expediente no encontrado en ninguna base de datos' });
             }
