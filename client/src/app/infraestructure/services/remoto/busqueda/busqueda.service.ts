@@ -11,6 +11,7 @@ export class BusquedaService {
 
   // this.router.get('/api/expediente/buscar-codigo/:codigoExpediente',busquedaController.buscarExpedienteCodigo)
   //this.router.get('/api/expediente/buscar-nro-anio/:numero/:anio',busquedaController.buscarPorNumeroYAnio)
+  //this.router.get('/api/expediente/buscar-nombre-parte/:nombre_parte', busquedaController.buscarNombreParte)
   private url_api_busqueda = `${environment.urlApi}/expediente`;
   constructor(private http: HttpClient) { }
 
@@ -21,6 +22,10 @@ export class BusquedaService {
 
   BuscarPorNumeroAnio(numero: string, anio: string): Observable<ExpedienteResponseList[]> {
     return this.http.get<ExpedienteResponseList[]>(`${this.url_api_busqueda}/buscar-nro-anio/${numero}/${anio}`)
+  }
+
+  BuscarPorNombreParte(nombre_parte:string): Observable<ExpedienteResponseList[]>{
+    return this.http.get<ExpedienteResponseList[]>(`${this.url_api_busqueda}/buscar-nombre-parte/${nombre_parte}`)
   }
 
 }

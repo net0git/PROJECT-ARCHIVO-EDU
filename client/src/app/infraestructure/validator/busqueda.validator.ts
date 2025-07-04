@@ -30,3 +30,13 @@ export function busqueda_codigo_vf( codigo: string): ErrorValidacion[] {
 
     return errorValidacion;
   }
+
+  export function busqueda_nombre_parte_vf( nombre_parte: string): ErrorValidacion[] {
+    const errorValidacion: ErrorValidacion[] = [];
+  
+    if (!nombre_parte) {
+      errorValidacion.push({ campo: 'codigo', mensaje: 'Campo requerido' });
+    }
+
+    return errorValidacion;
+  }

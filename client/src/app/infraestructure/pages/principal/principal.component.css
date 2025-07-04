@@ -177,3 +177,19 @@
     font-weight: 600
 
 }
+
+/* icono de impresion */
+.icon-printer {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #929FB1;
+    /* transition: font-size 0.3s ease, color 0.3s ease;  */
+}
+
+.icon-printer:hover {
+    font-size: 2.2rem;
+    color: #2f7dc7;
+    cursor: pointer;
+}
+
+/* visor pdf */

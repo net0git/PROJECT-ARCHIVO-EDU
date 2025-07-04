@@ -129,13 +129,13 @@ class UsuarioController {
                     success: true,
                     id_usuario: usuarioRest.id_usuario,
                     usuario: usuarioRest.usuario,
-                    nombre: usuario.nombre,
-                    perfil: usuario.perfil,
-                    ap_paterno: usuario.ap_paterno,
-                    ap_materno: usuario.ap_materno,
-                    dni: usuario.dni,
-                    estado: usuario.estado,
-                    archivo_sede: usuario.archivo_sede
+                    nombre: usuarioRest.nombre,
+                    perfil: usuarioRest.perfil,
+                    ap_paterno: usuarioRest.ap_paterno,
+                    ap_materno: usuarioRest.ap_materno,
+                    dni: usuarioRest.dni,
+                    estado: usuarioRest.estado,
+                    archivo_sede: usuarioRest.archivo_sede
                 });
             }
             catch (error) {
