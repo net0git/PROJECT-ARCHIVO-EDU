@@ -183,10 +183,7 @@ export class PrincipalComponent implements OnInit {
   }
 
   generarPDF(expediente: ExpedienteResponseList) {
-
-
     this.pdfUrl = generatePDFreporte(expediente, this.credencialesService.credenciales.usuario, this.sanitizer)
-
   }
 
 }
